@@ -6,4 +6,3 @@ spec:
   securityGroups:
     - sg-070290fb814c414e0
   subnet: subnet-0bbc7ab349dadb4a9
-
