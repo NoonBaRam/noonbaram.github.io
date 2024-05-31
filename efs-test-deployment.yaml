@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-deployment
+  name: test-deployment
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: test-deployment
+  template:
+    metadata:
+      labels:
+        app: test-deployment
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: persistent-storage  # 아래 volumes.name 과 필수로 맞추기
+          mountPath: /data
+      volumes:
+      - name: persistent-storage  # 위의 volumMounts.name 과 필수로 맞추기
+        persistentVolumeClaim:
+          claimName: efs-pvc  # PVC Name
