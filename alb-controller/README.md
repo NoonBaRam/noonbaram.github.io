@@ -1,11 +1,11 @@
 # IAM Policy 다운
-curl -O https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-iam-policy.json
+wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-iam-policy.json
 ## IAM Policy 생성
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://alb-controller-iam-policy.json
 
 
 # alb-controller-sa 다운 후 IAM Role arn 수정
-curl -O https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller-sa.yaml
+wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-sa.yaml
 ## alb-controller-sa 생성 
 kubectl apply -f alb-controller-sa.yaml
 
