@@ -26,6 +26,7 @@ sed -i.bak -e '627,635d' ./alb-controller-v2.8.yaml
 
 ## your-cluster-name 수정
 ![image](https://github.com/NoonBaRam/yaml/assets/132915445/01541836-0db2-43d7-a4bc-46d162f25306)
+
 sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.8.yaml
 <예시>
 sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.8.yaml
