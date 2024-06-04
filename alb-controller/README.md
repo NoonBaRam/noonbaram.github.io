@@ -24,5 +24,12 @@ sed -i.bak -e '627,635d' ./alb-controller-v2.8.yaml
 
 ![alb](https://github.com/NoonBaRam/yaml/assets/132915445/2792d3d6-005d-480c-94f7-0dbbb539313d)
 
+## your-cluster-name 수정
+![image](https://github.com/NoonBaRam/yaml/assets/132915445/01541836-0db2-43d7-a4bc-46d162f25306)
+sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.8.yaml
+<예시>
+sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.8.yaml
+
+
 ## alb-controller-v2.8.yaml 생성
 kubectl apply -f alb-controller-v2.8.yaml
