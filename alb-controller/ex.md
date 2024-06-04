@@ -17,6 +17,7 @@ kubectl apply -f cert-manager.yaml
 wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-v2.8.yaml
 ## yaml파일에 있는 SA 내용 삭제
 sed -i.bak -e '627,635d' ./alb-controller-v2.8.yaml
+
 ![alb](https://github.com/NoonBaRam/yaml/assets/132915445/2792d3d6-005d-480c-94f7-0dbbb539313d)
 ## alb-controller-v2.8.yaml 생성
 kubectl apply -f alb-controller-v2.8.yaml
