@@ -3,9 +3,11 @@
 ## IAM Policy 생성
 `aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://alb-controller-iam-policy.json`
 
-
-# alb-controller-sa 다운 후 IAM Role arn 수정
+# alb-controller-sa 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-sa.yaml`
+
+# IAM Role arn 수정
+vi alb-controller-sa.yaml
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -16,7 +18,7 @@ metadata:
   name: aws-load-balancer-controller
   namespace: kube-system
   annotations:
-    eks.amazonaws.com/role-arn: [IAM_Role_ARN]'
+    eks.amazonaws.com/role-arn: [IAM_Role_ARN]
 ```
 ## alb-controller-sa 생성 
 `kubectl apply -f alb-controller-sa.yaml`
@@ -48,3 +50,12 @@ metadata:
 
 ## alb-controller-v2.8.yaml 생성
 `kubectl apply -f alb-controller-v2.8.yaml`
+
+# ingress-class 다운 및 설치
+### 생성
+`wget https://raw.githubusercontent.com/NoonBaRam/noonbaram.github.io/main/alb-controller/v2_8_1_ingclass.yaml`
+
+### 설치
+`kubectl apply -f v2_8_1_ingclass.yaml`
+
+
