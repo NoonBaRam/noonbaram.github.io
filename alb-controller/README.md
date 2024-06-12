@@ -1,13 +1,14 @@
-# IAM Policy 다운
+# IAM Policy 다운 및 생성
+## IAM Policy 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-iam-policy.json`
 ## IAM Policy 생성
 `aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://alb-controller-iam-policy.json`
 
-# alb-controller-sa 다운
+# alb-controller-sa 다운 및 파일 수정 후 생성
+## 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-sa.yaml`
-
-# IAM Role arn 수정
-vi alb-controller-sa.yaml
+## IAM Role arn 수정
+`vi alb-controller-sa.yaml`
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -24,13 +25,15 @@ metadata:
 `kubectl apply -f alb-controller-sa.yaml`
 
 
-# Cert-manager 다운
+# Cert-manager 다운 및 생성
+## cert-manager 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/cert-manager.yaml`
 ## cert-manager 생성
 `kubectl apply -f cert-manager.yaml`
 
 
-# alb-controller-v2.8 다운
+# alb-controller-v2.8 다운 및 수정 후 생성
+## 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-v2.8.yaml`
 
 ## yaml파일에 있는 SA 내용 삭제
@@ -47,15 +50,14 @@ metadata:
 
 `sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.8.yaml`
 
-
 ## alb-controller-v2.8.yaml 생성
 `kubectl apply -f alb-controller-v2.8.yaml`
 
-# ingress-class 다운 및 설치
+# ingress-class 다운 및 생성
 ### 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/noonbaram.github.io/main/alb-controller/v2_8_1_ingclass.yaml`
 
-### 설치
+### 생성
 `kubectl apply -f v2_8_1_ingclass.yaml`
 
 
