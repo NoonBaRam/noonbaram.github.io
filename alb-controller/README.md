@@ -6,6 +6,17 @@
 
 # alb-controller-sa 다운 후 IAM Role arn 수정
 `wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-sa.yaml`
+'apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: aws-load-balancer-controller
+  name: aws-load-balancer-controller
+  namespace: kube-system
+  annotations:
+    eks.amazonaws.com/role-arn: [IAM_Role_ARN]'
+
 ## alb-controller-sa 생성 
 `kubectl apply -f alb-controller-sa.yaml`
 
