@@ -52,7 +52,7 @@ metadata:
 `kubectl apply -f alb-controller-v2.8.yaml`
 
 # ingress-class 다운 및 설치
-### 생성
+### 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/noonbaram.github.io/main/alb-controller/v2_8_1_ingclass.yaml`
 
 ### 설치
