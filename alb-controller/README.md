@@ -5,9 +5,9 @@
 
 
 # alb-controller-sa 다운 후 IAM Role arn 수정
+`wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-sa.yaml`
 ```yaml
-wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-sa.yaml`
-'apiVersion: v1
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
