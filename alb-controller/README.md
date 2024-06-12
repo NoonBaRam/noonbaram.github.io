@@ -17,7 +17,7 @@ metadata:
   namespace: kube-system
   annotations:
     eks.amazonaws.com/role-arn: [IAM_Role_ARN]'
-
+```
 ## alb-controller-sa 생성 
 `kubectl apply -f alb-controller-sa.yaml`
 
