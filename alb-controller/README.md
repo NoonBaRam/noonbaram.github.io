@@ -29,7 +29,12 @@ metadata:
 ## cert-manager 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/cert-manager.yaml`
 ## cert-manager 생성
-`kubectl apply -f cert-manager.yaml`
+`kubectl apply --validate=false -f cert-manager.yaml`
+
+![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/15d9407d-7360-4307-b427-ac0d75dd56e3)
+
+`kubectl get po -n cert-manager`
+![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/ce4a55e0-c160-44e1-b26e-63929648e726)
 
 
 # alb-controller-v2.8 다운 및 수정 후 생성
