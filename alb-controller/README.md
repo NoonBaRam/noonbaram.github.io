@@ -74,9 +74,9 @@ ingress를 describe 했을때 위와 같은 오류가 나온다면 아래 명령
 
 
 ## 다운
-`wget https://raw.githubusercontent.com/NoonBaRam/noonbaram.github.io/main/alb-controller/v2_8_1_ingclass.yaml`
+`wget https://raw.githubusercontent.com/NoonBaRam/noonbaram.github.io/main/alb-controller/ingclass.yaml`
 
 ## 생성
-`kubectl apply -f v2_8_1_ingclass.yaml`
+`kubectl apply -f ingclass.yaml`
 
 ``
