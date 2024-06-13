@@ -59,13 +59,16 @@ metadata:
 # ingress-class 다운 및 생성
 ✅ 사실 ingress-class는 alb-controller-v2.8 생성하면서 생성이 되어 있다.
     그러나 간혹 발생하는 두가지 오류로 ingress가 정상적으로 배포가 되지 않는다
-    ```html
-    Failed deploy model due to the server could not find the requested resource (post targetgroupbindings.elbv2.k8s.aws)
-    failed load groupID due to invalid ingress class: IngressClassParams.elbv2.k8s.aws "alb" not found
-    ```
+
+```html
+Failed deploy model due to the server could not find the requested resource (post targetgroupbindings.elbv2.k8s.aws)
+failed load groupID due to invalid ingress class: IngressClassParams.elbv2.k8s.aws "alb" not found
+```
+
     그렇기에 ingressclass 를 다운 받아 apply하면 두가지의 출력을 확인 할 수 있다.
     
     ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/9c39d278-e5a3-4240-891d-2e5f39b5c8ab)
+
     ingressclass는 설치되어 있으므로 `unchanged` ingressclassparams는 없기에 `created` 로 나온다.
 
 ## 다운
