@@ -65,7 +65,7 @@ Failed deploy model due to the server could not find the requested resource (pos
 failed load groupID due to invalid ingress class: IngressClassParams.elbv2.k8s.aws "alb" not found
 ```
 
-    그렇기에 ingressclass 를 다운 받아 apply하면 두가지의 출력을 확인 할 수 있다.
+그렇기에 ingressclass 를 다운 받아 apply하면 두가지의 출력을 확인 할 수 있다.
     
     ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/9c39d278-e5a3-4240-891d-2e5f39b5c8ab)
 
