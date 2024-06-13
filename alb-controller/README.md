@@ -47,9 +47,12 @@ metadata:
 `sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.8.yaml`
 
 ### <예시>
+
 `sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.8.yaml`
 
+
 ## alb-controller-v2.8.yaml 생성
+
 `kubectl apply -f alb-controller-v2.8.yaml`
 
 # ingress-class 다운 및 생성
