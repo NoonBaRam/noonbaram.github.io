@@ -62,4 +62,4 @@ metadata:
 ## 생성
 `kubectl apply -f v2_8_1_ingclass.yaml`
 
-
+``
