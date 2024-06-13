@@ -57,7 +57,7 @@ metadata:
 `kubectl apply -f alb-controller-v2.8.yaml`
 
 # ingress-class 다운 및 생성
-✅ 사실 ingress-class는 alb-controller-v2.8 생성하면서 생성이 되어 있다.
+✅ 사실 ingress-class는 alb-controller-v2.8 생성하면서 생성이 되어 있다.  
 그러나 간혹 발생하는 두가지 오류로 ingress가 정상적으로 배포가 되지 않는다
 ```html
 Failed deploy model due to the server could not find the requested resource (post targetgroupbindings.elbv2.k8s.aws)
