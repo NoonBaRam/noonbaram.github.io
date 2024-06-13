@@ -46,8 +46,7 @@ metadata:
 
 `sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.8.yaml`
 
-<예시>
-
+### <예시>
 `sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.8.yaml`
 
 ## alb-controller-v2.8.yaml 생성
