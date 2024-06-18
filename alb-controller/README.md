@@ -1,3 +1,6 @@
+# AWS OIDC 설정방법
+https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4  
+
 # IAM Policy 다운 및 생성
 ## IAM Policy 다운
 `wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-iam-policy.json`
