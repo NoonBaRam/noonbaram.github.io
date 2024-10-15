@@ -7,8 +7,7 @@ https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4
 ```bash
 wget https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
 ```
-#### 파일 내용
-https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
+[alb-controller-iam-policy.json파일 내용] (https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json)
 
 ## IAM Policy 생성
 ```bash
