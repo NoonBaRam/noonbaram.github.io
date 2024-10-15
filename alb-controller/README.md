@@ -101,5 +101,3 @@ wget https://git.noonbaram.shop/alb-controller/ingclass.yaml
 ```
 ## 생성
 `kubectl apply -f ingclass.yaml`
-
-``
