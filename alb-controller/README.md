@@ -7,7 +7,7 @@ https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4
 wget https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
 ```
 ```markdown
-[여기를 클릭하여 IAM Policy를 다운받으세요](https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json)
+https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
 ```
 
 ## IAM Policy 생성
