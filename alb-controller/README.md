@@ -7,7 +7,7 @@ https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4
 ```bash
 wget https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
 ```
-[alb-controller-iam-policy.json파일 내용] (https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json)
+alb-controller-iam-policy.json파일 내용 (https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json)
 
 ## IAM Policy 생성
 ```bash
@@ -15,8 +15,12 @@ aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-
 ```
 
 # alb-controller-sa 다운 및 파일 수정 후 생성
-## 다운
-`wget https://git.noonbaram.shop/alb-controller/alb-controller-sa.yaml`
+## ServiceAccount다운
+### 아래 명령어로 alb-controller-sa.yaml 파일 다운
+```bash
+wget https://git.noonbaram.shop/alb-controller/alb-controller-sa.yaml
+```
+alb-controller-sa.yam파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-sa.yaml
 ## IAM Role arn 수정
 `vi alb-controller-sa.yaml`
 ```yaml
