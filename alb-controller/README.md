@@ -3,11 +3,9 @@ https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4
 
 # IAM Policy 다운 및 생성
 ## IAM Policy 다운
+### 아래 명령어로 alb-controller-iam-policy.json 파일 다운
 ```bash
 wget https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
-```
-```markdown
-https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
 ```
 
 ## IAM Policy 생성
