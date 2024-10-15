@@ -3,13 +3,14 @@ https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4
 
 # IAM Policy 다운 및 생성
 ## IAM Policy 다운
-`wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-iam-policy.json`
+`wget https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json`
+
 ## IAM Policy 생성
 `aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://alb-controller-iam-policy.json`
 
 # alb-controller-sa 다운 및 파일 수정 후 생성
 ## 다운
-`wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-sa.yaml`
+`wget https://git.noonbaram.shop/alb-controller/alb-controller-sa.yaml`
 ## IAM Role arn 수정
 `vi alb-controller-sa.yaml`
 ```yaml
@@ -30,7 +31,7 @@ metadata:
 
 # Cert-manager 다운 및 생성
 ## cert-manager 다운
-`wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/cert-manager.yaml`
+`wget https://git.noonbaram.shop/alb-controller/cert-manager.yaml`
 ## cert-manager 생성
 `kubectl apply --validate=false -f cert-manager.yaml`
 
@@ -42,7 +43,7 @@ metadata:
 
 # alb-controller-v2.8 다운 및 수정 후 생성
 ## 다운
-`wget https://raw.githubusercontent.com/NoonBaRam/yaml/main/alb-controller/alb-controller-v2.8.yaml`
+`wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.8.yaml`
 
 ## yaml파일에 있는 SA 내용 삭제
 `sed -i.bak -e '627,635d' ./alb-controller-v2.8.yaml`
@@ -77,7 +78,7 @@ ingress를 describe 했을때 위와 같은 오류가 나온다면 아래 명령
 
 
 ## 다운
-`wget https://raw.githubusercontent.com/NoonBaRam/noonbaram.github.io/main/alb-controller/ingclass.yaml`
+`wget https://git.noonbaram.shop/alb-controller/ingclass.yaml`
 
 ## 생성
 `kubectl apply -f ingclass.yaml`
