@@ -1,20 +1,20 @@
-# AWS OIDC 설정방법
+# 00. AWS OIDC 설정방법
 https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4  
 
-# IAM Policy 다운 및 생성
+# 1. IAM Policy 다운 및 생성
 ## IAM Policy 다운
 ### 아래 명령어로 alb-controller-iam-policy.json 파일 다운
 ```bash
 wget https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
 ```
-alb-controller-iam-policy.json파일 내용 (https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json)
+alb-controller-iam-policy.json파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
 
 ## IAM Policy 생성
 ```bash
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://alb-controller-iam-policy.json
 ```
 
-# alb-controller-sa 다운 및 파일 수정 후 생성
+# 2. alb-controller-sa 다운 및 파일 수정 후 생성
 ## ServiceAccount다운
 ### 아래 명령어로 alb-controller-sa.yaml 파일 다운
 ```bash
@@ -39,9 +39,13 @@ metadata:
 `kubectl apply -f alb-controller-sa.yaml`
 
 
-# Cert-manager 다운 및 생성
+# 3. Cert-manager 다운 및 생성
 ## cert-manager 다운
-`wget https://git.noonbaram.shop/alb-controller/cert-manager.yaml`
+### 아래 명령어로 cert-manager.yaml 파일 다운
+```bash
+wget https://git.noonbaram.shop/alb-controller/cert-manager.yaml
+```
+cert-manager.yaml파일 내용 https://git.noonbaram.shop/alb-controller/cert-manager.yaml
 ## cert-manager 생성
 `kubectl apply --validate=false -f cert-manager.yaml`
 
@@ -51,9 +55,13 @@ metadata:
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/ce4a55e0-c160-44e1-b26e-63929648e726)
 
 
-# alb-controller-v2.8 다운 및 수정 후 생성
-## 다운
-`wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.8.yaml`
+# 4. alb-controller-v2.8 다운 및 수정 후 생성
+## alb-controller 다운
+### 아래 명령어로 alb-controller-v2.8.yaml 파일 다운
+```bash
+wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.8.yaml
+```
+alb-controller-v2.8.yaml파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-v2.8.yaml
 
 ## yaml파일에 있는 SA 내용 삭제
 `sed -i.bak -e '627,635d' ./alb-controller-v2.8.yaml`
@@ -70,7 +78,7 @@ metadata:
 ## alb-controller-v2.8.yaml 생성
 `kubectl apply -f alb-controller-v2.8.yaml`
 
-# ingress-class 다운 및 생성
+# errorr 발생시 ingress-class 다운 및 생성
 ✅ 사실 ingress-class는 alb-controller-v2.8 생성하면서 생성이 되어 있다.  
 그러나 간혹 발생하는 두가지 오류로 ingress가 정상적으로 배포가 되지 않는다
 ```html
@@ -87,9 +95,10 @@ ingress를 describe 했을때 위와 같은 오류가 나온다면 아래 명령
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/8adb5cfa-5cdd-4456-8932-09196187927c)
 
 
-## 다운
-`wget https://git.noonbaram.shop/alb-controller/ingclass.yaml`
-
+## 아래 명령어로 ingclass.yaml 다운
+```bash
+wget https://git.noonbaram.shop/alb-controller/ingclass.yaml
+```
 ## 생성
 `kubectl apply -f ingclass.yaml`
 
