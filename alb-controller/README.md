@@ -55,31 +55,31 @@ cert-manager.yaml파일 내용 https://git.noonbaram.shop/alb-controller/cert-ma
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/ce4a55e0-c160-44e1-b26e-63929648e726)
 
 
-# 4. alb-controller-v2.8 다운 및 수정 후 생성
+# 4. alb-controller-v2.9.2 다운 및 수정 후 생성
 ## alb-controller 다운
-### 아래 명령어로 alb-controller-v2.8.yaml 파일 다운
+### 아래 명령어로 alb-controller-v2.9.2.yaml 파일 다운
 ```bash
 wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 ```
-alb-controller-v2.8.yaml파일 내용 [https://git.noonbaram.shop/alb-controller/alb-controller-v2.8.yaml](https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml)
+alb-controller-v2.8.yaml파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 
 ## yaml파일에 있는 SA 내용 삭제
-`sed -i.bak -e '627,635d' ./alb-controller-v2.8.yaml`
+`sed -i.bak -e '656,664d' ./alb-controller-v2.9.2.yaml`
 
 ![alb](https://github.com/NoonBaRam/yaml/assets/132915445/2792d3d6-005d-480c-94f7-0dbbb539313d)
 
 ## your-cluster-name 수정
-`sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.8.yaml`
+`sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.9.2.yaml`
 ![image](https://github.com/NoonBaRam/yaml/assets/132915445/01541836-0db2-43d7-a4bc-46d162f25306)
 
 ### <예시>
-`sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.8.yaml`
+`sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.9.2.yaml`
 
 ## alb-controller-v2.8.yaml 생성
-`kubectl apply -f alb-controller-v2.8.yaml`
+`kubectl apply -f alb-controller-v2.9.2.yaml`
 
 # errorr 발생시 ingress-class 다운 및 생성
-✅ 사실 ingress-class는 alb-controller-v2.8 생성하면서 생성이 되어 있다.  
+✅ 사실 ingress-class는 alb-controller-v2.9.2 생성하면서 생성이 되어 있다.  
 그러나 간혹 발생하는 두가지 오류로 ingress가 정상적으로 배포가 되지 않는다
 ```html
 Failed deploy model due to the server could not find the requested resource (post targetgroupbindings.elbv2.k8s.aws)
