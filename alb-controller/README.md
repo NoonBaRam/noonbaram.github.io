@@ -61,21 +61,20 @@ cert-manager.yaml파일 내용 https://git.noonbaram.shop/alb-controller/cert-ma
 ```bash
 wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 ```
-alb-controller-v2.8.yaml파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
+alb-controller-v2.9.2.yaml파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 
 ## yaml파일에 있는 SA 내용 삭제
 `sed -i.bak -e '656,664d' ./alb-controller-v2.9.2.yaml`
-
-![alb](https://github.com/NoonBaRam/yaml/assets/132915445/2792d3d6-005d-480c-94f7-0dbbb539313d)
+![image](https://github.com/user-attachments/assets/89ec0f63-8d4c-4559-b0c3-968338838f10)
 
 ## your-cluster-name 수정
 `sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.9.2.yaml`
-![image](https://github.com/NoonBaRam/yaml/assets/132915445/01541836-0db2-43d7-a4bc-46d162f25306)
+![image](https://github.com/user-attachments/assets/802a35e3-3e5d-469a-a4fd-51cb4fa5b514)
 
 ### <예시>
 `sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.9.2.yaml`
 
-## alb-controller-v2.8.yaml 생성
+## alb-controller-v2.9.2.yaml 생성
 `kubectl apply -f alb-controller-v2.9.2.yaml`
 
 # errorr 발생시 ingress-class 다운 및 생성
