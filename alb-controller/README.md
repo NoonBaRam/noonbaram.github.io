@@ -59,9 +59,9 @@ cert-manager.yaml파일 내용 https://git.noonbaram.shop/alb-controller/cert-ma
 ## alb-controller 다운
 ### 아래 명령어로 alb-controller-v2.8.yaml 파일 다운
 ```bash
-wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.8.yaml
+wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 ```
-alb-controller-v2.8.yaml파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-v2.8.yaml
+alb-controller-v2.8.yaml파일 내용 [https://git.noonbaram.shop/alb-controller/alb-controller-v2.8.yaml](https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml)
 
 ## yaml파일에 있는 SA 내용 삭제
 `sed -i.bak -e '627,635d' ./alb-controller-v2.8.yaml`
