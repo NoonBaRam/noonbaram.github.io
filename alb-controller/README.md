@@ -65,10 +65,12 @@ alb-controller-v2.9.2.yaml파일 내용 https://git.noonbaram.shop/alb-controlle
 
 ## yaml파일에 있는 SA 내용 삭제
 `sed -i.bak -e '656,664d' ./alb-controller-v2.9.2.yaml`
+
 ![image](https://github.com/user-attachments/assets/89ec0f63-8d4c-4559-b0c3-968338838f10)
 
 ## your-cluster-name 수정
 `sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.9.2.yaml`
+
 ![image](https://github.com/user-attachments/assets/802a35e3-3e5d-469a-a4fd-51cb4fa5b514)
 
 ### <예시>
