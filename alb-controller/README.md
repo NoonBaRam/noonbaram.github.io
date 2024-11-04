@@ -52,6 +52,7 @@ cert-manager.yaml파일 내용 https://git.noonbaram.shop/alb-controller/cert-ma
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/15d9407d-7360-4307-b427-ac0d75dd56e3)
 
 `kubectl get po -n cert-manager`
+
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/ce4a55e0-c160-44e1-b26e-63929648e726)
 
 
