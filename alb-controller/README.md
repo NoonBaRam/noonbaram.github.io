@@ -41,8 +41,7 @@ alb-controller-v2.9.2.yaml파일 내용 https://git.noonbaram.shop/alb-controlle
 
 ## YOUR-IAM-ROLE-ARN 수정
 `sed -i.bak -e 's|YOUR-IAM-ROLE-ARN|my-iam-arn|' ./alb-controller-v2.9.2.yaml`
-
-![image](https://github.com/user-attachments/assets/e4d2489d-3ebc-4860-aae8-62b95ab2895a)
+![image](https://github.com/user-attachments/assets/7202a744-b80f-4692-b3f2-70e755fdc606)
 
 ## YOUR-CLUSTER-NAME 수정
 `sed -i.bak -e 's|YOUR-CLUSTER-NAME|my-cluster|' ./alb-controller-v2.9.2.yaml`
