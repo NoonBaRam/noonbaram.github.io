@@ -14,32 +14,7 @@ alb-controller-iam-policy.json파일 내용 https://git.noonbaram.shop/alb-contr
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://alb-controller-iam-policy.json
 ```
 
-# 2. alb-controller-sa 다운 및 파일 수정 후 생성
-## ServiceAccount다운
-### 아래 명령어로 alb-controller-sa.yaml 파일 다운
-```bash
-wget https://git.noonbaram.shop/alb-controller/alb-controller-sa.yaml
-```
-alb-controller-sa.yam파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-sa.yaml
-## IAM Role arn 수정
-`vi alb-controller-sa.yaml`
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  labels:
-    app.kubernetes.io/component: controller
-    app.kubernetes.io/name: aws-load-balancer-controller
-  name: aws-load-balancer-controller
-  namespace: kube-system
-  annotations:
-    eks.amazonaws.com/role-arn: [IAM_Role_ARN]
-```
-## alb-controller-sa 생성 
-`kubectl apply -f alb-controller-sa.yaml`
-
-
-# 3. Cert-manager 다운 및 생성
+# 2. Cert-manager 다운 및 생성
 ## cert-manager 다운
 ### 아래 명령어로 cert-manager.yaml 파일 다운
 ```bash
@@ -56,7 +31,7 @@ cert-manager.yaml파일 내용 https://git.noonbaram.shop/alb-controller/cert-ma
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/ce4a55e0-c160-44e1-b26e-63929648e726)
 
 
-# 4. alb-controller-v2.9.2 다운 및 수정 후 생성
+# 3. alb-controller-v2.9.2 다운 및 수정 후 생성
 ## alb-controller 다운
 ### 아래 명령어로 alb-controller-v2.9.2.yaml 파일 다운
 ```bash
@@ -64,18 +39,22 @@ wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 ```
 alb-controller-v2.9.2.yaml파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 
-## yaml파일에 있는 SA 내용 삭제
-`sed -i.bak -e '656,664d' ./alb-controller-v2.9.2.yaml`
+## yaml파일에 있는 SA 내용 수정
+`sed -i.bak -e 's|YOUR-IAM-ROLE-ARN|my-iam-arn|' ./alb-controller-v2.9.2.yaml`
+
+![image](https://github.com/user-attachments/assets/e4d2489d-3ebc-4860-aae8-62b95ab2895a)
 
 ![image](https://github.com/user-attachments/assets/89ec0f63-8d4c-4559-b0c3-968338838f10)
 
 ## your-cluster-name 수정
-`sed -i.bak -e 's|your-cluster-name|my-cluster|' ./alb-controller-v2.9.2.yaml`
+`sed -i.bak -e 's|YOUR-CLUSTER-NAME|my-cluster|' ./alb-controller-v2.9.2.yaml`
+
+![image](https://github.com/user-attachments/assets/7f7b5246-3eec-4c7e-9825-0d79104f611c)
 
 ![image](https://github.com/user-attachments/assets/802a35e3-3e5d-469a-a4fd-51cb4fa5b514)
 
 ### <예시>
-`sed -i.bak -e 's|your-cluster-name|WTH-EKS|' ./alb-controller-v2.9.2.yaml`
+`sed -i.bak -e 's|YOUR-CLUSTER-NAME|WTH-EKS|' ./alb-controller-v2.9.2.yaml`
 
 ## alb-controller-v2.9.2.yaml 생성
 `kubectl apply -f alb-controller-v2.9.2.yaml`
