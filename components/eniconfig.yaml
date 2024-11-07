@@ -1,0 +1,19 @@
+apiVersion: crd.k8s.amazonaws.com/v1alpha1
+kind: ENIConfig
+metadata:
+ name: ap-northeast-2a(실제 리전+존 이름으로 작성)
+spec:
+  subnet: <subnet ID>
+  #아래 SG는 옵션사항 설정 안하면 Node SG와 동일
+  securityGroups: 
+  - <SG ID>
+---
+apiVersion: crd.k8s.amazonaws.com/v1alpha1
+kind: ENIConfig
+metadata:
+ name: ap-northeast-2c(실제 리전+존 이름으로 작성)
+spec:
+  subnet: <subnet ID>
+  #아래 SG는 옵션사항 설정 안하면 Node SG와 동일
+  securityGroups: 
+  - <SG ID>
