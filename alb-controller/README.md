@@ -39,12 +39,12 @@ wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 ```
 alb-controller-v2.9.2.yaml파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
 
-## yaml파일에 있는 SA 내용 수정
+## YOUR-IAM-ROLE-ARN 수정
 `sed -i.bak -e 's|YOUR-IAM-ROLE-ARN|my-iam-arn|' ./alb-controller-v2.9.2.yaml`
 
 ![image](https://github.com/user-attachments/assets/e4d2489d-3ebc-4860-aae8-62b95ab2895a)
 
-## your-cluster-name 수정
+## YOUR-CLUSTER-NAME 수정
 `sed -i.bak -e 's|YOUR-CLUSTER-NAME|my-cluster|' ./alb-controller-v2.9.2.yaml`
 
 ![image](https://github.com/user-attachments/assets/7f7b5246-3eec-4c7e-9825-0d79104f611c)
