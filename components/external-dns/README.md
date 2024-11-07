@@ -49,12 +49,12 @@ helm template external-dns-private external-dns/external-dns \
 ```
 #### IAM Policy 참고 URL
 https://kubernetes-sigs.github.io/external-dns/v0.13.5/tutorials/aws/#iam-policy  
-## EKS OIDC와 연결  
+## 2-1 EKS OIDC와 연결  
 ![image](https://github.com/user-attachments/assets/0d3c133b-db37-471d-bf8d-6ce26185b3f1)  
 
 
 
-# 2. Namespace & ServiceAccount YAML 다운 및 IAM ROLE ARN수정
+# 3. Namespace & ServiceAccount YAML 다운 및 IAM ROLE ARN수정
 ```bash
 wget https://git.noonbaram.shop/components/external-dns/ns-serviceaccount.yaml
 ```
@@ -80,12 +80,12 @@ metadata:
     eks.amazonaws.com/role-arn: YOUR-IAM-ROLE-ARN
 ```  
 ![image](https://github.com/user-attachments/assets/bc9a20f7-9cc1-4c7c-8bef-602e7f175cd5)  
-# 3. ns-serviceaccount.yaml 배포
+# 4. ns-serviceaccount.yaml 배포
 ```
 k apply -f ns-serviceaccount.yaml
 ```
 
-# 4. external-dns.yaml 배포
+# 5. external-dns.yaml 배포
 ```
 k apply -f external-dns.yaml
 ```
