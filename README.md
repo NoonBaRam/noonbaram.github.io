@@ -27,4 +27,4 @@ README.md
 mario.yaml
 secret.yaml
 ```
-![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/43dda0e9-7984-4558-838c-cd0cdf082aa5)
+![image](https://github.com/user-attachments/assets/f2458405-c6a7-42cc-92e9-e55927b88703)
