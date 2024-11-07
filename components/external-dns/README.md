@@ -24,9 +24,36 @@ helm template external-dns-private external-dns/external-dns \
 ```bash
 wget https://git.noonbaram.shop/components/external-dns/ns-serviceaccount.yaml
 ```
+```yaml
+# Namespace create
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: external-dns
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Namespace","metadata":{"name":"external-dns"}}'
+spec: {}
+---
+# ServiceAccount Create
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: external-dns
+  namespace: external-dns
+  labels:
+    app.kubernetes.io/name: external-dns
+  annotations:
+    eks.amazonaws.com/role-arn: YOUR-IAM-ROLE-ARN
+```
+
 ![image](https://github.com/user-attachments/assets/bc9a20f7-9cc1-4c7c-8bef-602e7f175cd5)
 
 # 3. ns-serviceaccount.yaml 배포
 ```
 k apply -f ns-serviceaccount.yaml
+```
+
+# 4. external-dns.yaml 배포
+```
+k apply -f external-dns.yaml
 ```
