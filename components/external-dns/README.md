@@ -1,4 +1,4 @@
-# helm repo 추가 및 template 다운
+# 1. helm repo 추가 및 template 다운
 ```bash
 helm repo add external-dns https://kubernetes-sigs.github.io/external-dns/
 ```
@@ -20,8 +20,13 @@ helm template external-dns-private external-dns/external-dns \
     --set extraArgs[1]="--ingress-class=alb" > external-dns.yaml
 ```
 
-# Namespace & ServiceAccount YAML 다운 및 IAM ROLE ARN수정
+# 2. Namespace & ServiceAccount YAML 다운 및 IAM ROLE ARN수정
 ```bash
 wget https://git.noonbaram.shop/components/external-dns/ns-serviceaccount.yaml
 ```
 ![image](https://github.com/user-attachments/assets/bc9a20f7-9cc1-4c7c-8bef-602e7f175cd5)
+
+# 3. ns-serviceaccount.yaml 배포
+```
+k apply -f ns-serviceaccount.yaml
+```
