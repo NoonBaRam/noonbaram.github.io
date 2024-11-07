@@ -47,7 +47,7 @@ helm template external-dns-private external-dns/external-dns \
     "Version": "2012-10-17"
 }
 ```
-#### 참고 URL
+#### IAM Policy 참고 URL
 https://kubernetes-sigs.github.io/external-dns/v0.13.5/tutorials/aws/#iam-policy  
 ## EKS OIDC와 연결  
 ![image](https://github.com/user-attachments/assets/0d3c133b-db37-471d-bf8d-6ce26185b3f1)  
