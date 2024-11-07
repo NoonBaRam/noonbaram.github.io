@@ -19,3 +19,9 @@ helm template external-dns-private external-dns/external-dns \
     --set extraArgs[0]="--aws-zone-type=private" \
     --set extraArgs[1]="--ingress-class=alb" > external-dns.yaml
 ```
+
+# Namespace & ServiceAccount YAML 다운 및 IAM ROLE ARN수정
+```bash
+wget https://git.noonbaram.shop/components/external-dns/ns-serviceaccount.yaml
+```
+![image](https://github.com/user-attachments/assets/bc9a20f7-9cc1-4c7c-8bef-602e7f175cd5)
