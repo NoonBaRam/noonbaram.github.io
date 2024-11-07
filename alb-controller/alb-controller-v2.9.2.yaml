@@ -922,7 +922,7 @@ spec:
     spec:
       containers:
       - args:
-        - --cluster-name=your-cluster-name
+        - --cluster-name=YOUR-CLUSTER-NAME
         - --ingress-class=alb
         image: public.ecr.aws/eks/aws-load-balancer-controller:v2.9.2
         livenessProbe:
