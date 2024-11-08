@@ -1,0 +1,56 @@
+# 1. IAM Role & Policy 생성
+## 1-1 IAM Policy 생성
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:DescribeAutoScalingGroups",
+                "autoscaling:DescribeAutoScalingInstances",
+                "autoscaling:DescribeLaunchConfigurations",
+                "autoscaling:DescribeScalingActivities",
+                "ec2:DescribeInstanceTypes",
+                "ec2:DescribeLaunchTemplateVersions"
+            ],
+            "Resource": ["*"]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:SetDesiredCapacity",
+                "autoscaling:TerminateInstanceInAutoScalingGroup"
+            ],
+            "Resource": ["*"]
+        }
+    ]
+}
+```
+### 참고 URL : https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/CA_with_AWS_IAM_OIDC.md
+
+## 1-2 EKS OIDC 연결하여 IAM Role 생성
+![image](https://github.com/user-attachments/assets/6770e4d1-05a8-42fd-bde5-b0715ff6ab6c)  
+
+# 2. Cluster Autoscaler yaml 다운  
+```bash
+wget https://raw.githubusercontent.com/kubernetes/autoscaler/refs/heads/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+```
+
+# 3. Yaml 수정
+
+## 3-1 Service Account에 Annotations 추가 및 IAM Role ARN 입력  
+![image](https://github.com/user-attachments/assets/12a4debb-cba9-4b2f-8f4a-7700df4e7f8a)  
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-addon: cluster-autoscaler.addons.k8s.io
+    k8s-app: cluster-autoscaler
+  annotations:
+    eks.amazonaws.com/role-arn: YOUR-IAM-ROLE-ARN
+  name: cluster-autoscaler
+  namespace: kube-system
+```
+## 3-3 
