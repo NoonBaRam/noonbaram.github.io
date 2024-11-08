@@ -8,4 +8,4 @@ wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.2/
 k apply -f metrics-server-linux-amd64
 ```
 #### 참고 URL : [metrics-server](https://github.com/kubernetes-sigs/metrics-server/releases)
-#### metrics yaml 미리보기 : [metrics yaml](https://git.noonbaram.shop/components/metrics-server.yaml)
+#### metrics yaml 미리보기 : [metrics yaml](https://git.noonbaram.shop/components/metrics-server/metrics-server.yaml)
