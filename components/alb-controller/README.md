@@ -5,7 +5,7 @@ https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4
 ## IAM Policy 다운
 ### 아래 명령어로 alb-controller-iam-policy.json 파일 다운
 ```bash
-wget https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
+wget https://git.noonbaram.shop/components/alb-controller/alb-controller-iam-policy.json
 ```
 alb-controller-iam-policy.json파일 내용 http://git.noonbaram.shop/components/alb-controller/alb-controller-iam-policy.json  
 
@@ -78,7 +78,7 @@ ingress를 describe 했을때 위와 같은 오류가 나온다면 아래 명령
 
 ## 아래 명령어로 ingclass.yaml 다운
 ```bash
-wget https://git.noonbaram.shop/alb-controller/ingclass.yaml
+wget https://git.noonbaram.shop/components/alb-controller/ingclass.yaml
 ```  
 ## 생성
 ```bash
