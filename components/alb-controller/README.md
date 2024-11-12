@@ -7,7 +7,7 @@ https://noonbaram.notion.site/OIDC-c85ea8ef78ba47a1b008d5cf7b208bf5?pvs=4
 ```bash
 wget https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
 ```
-alb-controller-iam-policy.json파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-iam-policy.json
+alb-controller-iam-policy.json파일 내용 http://git.noonbaram.shop/components/alb-controller/alb-controller-iam-policy.json  
 
 ## IAM Policy 생성
 ```bash
@@ -18,9 +18,9 @@ aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-
 ## cert-manager 다운
 ### 아래 명령어로 cert-manager.yaml 파일 다운
 ```bash
-wget https://git.noonbaram.shop/alb-controller/cert-manager.yaml
-```
-cert-manager.yaml파일 내용 https://git.noonbaram.shop/alb-controller/cert-manager.yaml
+wget http://git.noonbaram.shop/components/alb-controller/cert-manager.yaml
+```  
+cert-manager.yaml파일 내용 http://git.noonbaram.shop/components/alb-controller/cert-manager.yaml  
 ## cert-manager 생성
 ```bash
 kubectl apply --validate=false -f cert-manager.yaml
@@ -35,9 +35,9 @@ kubectl get po -n cert-manager
 ## alb-controller 다운
 ### 아래 명령어로 alb-controller-v2.9.2.yaml 파일 다운
 ```bash
-wget https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml
+wget http://git.noonbaram.shop/components/alb-controller/alb-controller-v2.9.2.yaml
 ```  
-alb-controller-v2.9.2.yaml파일 내용 https://git.noonbaram.shop/alb-controller/alb-controller-v2.9.2.yaml  
+alb-controller-v2.9.2.yaml파일 내용 http://git.noonbaram.shop/components/alb-controller/alb-controller-v2.9.2.yaml  
 ## YOUR-IAM-ROLE-ARN 수정
 ```bash
 sed -i.bak -e 's|YOUR-IAM-ROLE-ARN|my-iam-arn|' ./alb-controller-v2.9.2.yaml
