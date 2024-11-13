@@ -126,7 +126,7 @@ metadata:
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/load-balancer-name: wth-dns-test-lb
     alb.ingress.kubernetes.io/manage-backend-security-group-rules: "true"
-    alb.ingress.kubernetes.io/scheme: internetfacing
+    alb.ingress.kubernetes.io/scheme: internal
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06
     alb.ingress.kubernetes.io/subnets: subnet-ID, subnet-ID
     alb.ingress.kubernetes.io/target-type: ip
@@ -147,5 +147,11 @@ spec:
                   number: 80
 ```  
 
+![image](https://github.com/user-attachments/assets/27e3fa34-92c2-4596-a7f0-cb5c1eeb9d83)  
 
+### ingress 생성시 log
+https://github.com/user-attachments/assets/2be4af0e-85f7-47d3-b412-fdda10755e74  
+
+### ingress 삭제시 log
+https://github.com/user-attachments/assets/76b74f48-ba2d-4c8c-bede-a3a9bdc6fd67  
 
