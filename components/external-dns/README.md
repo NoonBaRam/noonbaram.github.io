@@ -1,5 +1,7 @@
 [![Ingress 생성 로그](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
+[![create-image](https://github.com/user-attachments/assets/a35ad2d1-5b39-4539-a543-184d1bfda0b6)](https://github.com/user-attachments/assets/27e3fa34-92c2-4596-a7f0-cb5c1eeb9d83)  
+
 
 # 1. helm repo 추가 및 template 다운
 ```bash
