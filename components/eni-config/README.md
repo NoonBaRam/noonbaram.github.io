@@ -32,3 +32,5 @@ kubectl describe ds -n kube-system aws-node | grep -i cfg
 kubectl describe ds -n kube-system aws-node | grep -i def
 ```  
 ![image](https://github.com/user-attachments/assets/2ee25e32-1303-4942-97df-5b83e589bb36)  
+# 2. 노드 배포하여 pod IP 확인
+![image](https://github.com/user-attachments/assets/de471b88-9548-49d1-91ac-70303dab935d)
