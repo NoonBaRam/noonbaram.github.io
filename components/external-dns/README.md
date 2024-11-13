@@ -151,6 +151,6 @@ spec:
 
 ### ingress 생성시 log
 https://github.com/user-attachments/assets/2be4af0e-85f7-47d3-b412-fdda10755e74  
-
+[보기](https://git.noonbaram.shop/components/external-dns/externaldns-create.mp4)  
 ### ingress 삭제시 log
 https://github.com/user-attachments/assets/76b74f48-ba2d-4c8c-bede-a3a9bdc6fd67  
