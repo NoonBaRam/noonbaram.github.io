@@ -149,8 +149,7 @@ spec:
 
 ![image](https://github.com/user-attachments/assets/27e3fa34-92c2-4596-a7f0-cb5c1eeb9d83)  
 
-### ingress 생성시 log
-https://github.com/user-attachments/assets/2be4af0e-85f7-47d3-b412-fdda10755e74  
-[보기](https://git.noonbaram.shop/components/external-dns/externaldns-create.mp4)  
+### [ingress 생성시 log](https://git.noonbaram.shop/components/external-dns/externaldns-create.mp4)  
+
 ### ingress 삭제시 log
 https://github.com/user-attachments/assets/76b74f48-ba2d-4c8c-bede-a3a9bdc6fd67  
