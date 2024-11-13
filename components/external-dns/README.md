@@ -1,6 +1,6 @@
 [![Ingress 생성 로그](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
-[![create-image](https://github.com/user-attachments/assets/a35ad2d1-5b39-4539-a543-184d1bfda0b6)](https://github.com/user-attachments/assets/27e3fa34-92c2-4596-a7f0-cb5c1eeb9d83)  
+[![create-image](https://github.com/user-attachments/assets/a35ad2d1-5b39-4539-a543-184d1bfda0b6)](https://git.noonbaram.shop/components/external-dns/externaldns-create.mp4)  
 
 
 # 1. helm repo 추가 및 template 다운
@@ -154,7 +154,7 @@ spec:
 
 ![image](https://github.com/user-attachments/assets/27e3fa34-92c2-4596-a7f0-cb5c1eeb9d83)  
 
-### [ingress 생성시 log](https://git.noonbaram.shop/components/external-dns/externaldns-create.mp4)  
+### ingress 생성시 log  
 
 ### ingress 삭제시 log
 https://github.com/user-attachments/assets/76b74f48-ba2d-4c8c-bede-a3a9bdc6fd67  
