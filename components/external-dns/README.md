@@ -90,3 +90,29 @@ k apply -f ns-serviceaccount.yaml
 ```
 k apply -f external-dns.yaml
 ```
+# 6. external-dns 테스트
+## 6-1 openssl cli로 인증서 생성
+```bash
+# private key 생성
+openssl genrsa -out TEST-ACM.key 2048
+
+# csr(Certificate Signing Request) 생성
+openssl req -new -key TEST-ACM.key -out TEST-ACM.csr -subj "/C=US/ST=State/L=City/O=YourOrganization/OU=IT/CN=*.DNS-NAME"
+
+# 인증서 본문 겸 체인 키 생성(1년 인증서)
+openssl x509 -req -in TEST-ACM.csr -signkey TEST-ACM.key -out TEST-ACM.crt -days 365 -extfile <(printf "[v3_req]\nsubjectAltName=DNS:DNS-NAME,DNS:*.DNS-NAME") -extensions v3_req
+```  
+![image](https://github.com/user-attachments/assets/e873d46f-294a-4cb8-bd3d-1692abae2b94)  
+
+#### 인증서 본문 : crt key
+#### 인증서 프라이빗 키 : key
+#### 인증서 체인 : crt key
+![image](https://github.com/user-attachments/assets/60d55126-8f4f-457c-91d8-d199eda1ed0b)  
+
+![image](https://github.com/user-attachments/assets/e8bb6c53-1c55-48e5-8d4f-dbb29eba5022)
+
+
+
+
+
+
