@@ -663,7 +663,7 @@ metadata:
   name: aws-load-balancer-controller
   namespace: kube-system
   annotations:
-  eks.amazonaws.com/role-arn: YOUR-IAM-ROLE-ARN
+    eks.amazonaws.com/role-arn: YOUR-IAM-ROLE-ARN
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
