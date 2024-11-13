@@ -1,3 +1,6 @@
+[![Ingress 생성 로그 보기](https://via.placeholder.com/640x360.png?text=Watch+Ingress+Create+Log)](https://github.com/user-attachments/assets/2be4af0e-85f7-47d3-b412-fdda10755e74)
+
+
 # 1. helm repo 추가 및 template 다운
 ```bash
 helm repo add external-dns https://kubernetes-sigs.github.io/external-dns/
