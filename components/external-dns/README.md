@@ -7,6 +7,7 @@ helm repo update external-dns
 ```
 ```bash
 helm template external-dns-private external-dns/external-dns \
+    --namespace external-dns \
     --set image.tag=v0.15.0 \
     --set serviceAccount.create=false \
     --set serviceAccount.name=external-dns \
@@ -109,10 +110,42 @@ openssl x509 -req -in TEST-ACM.csr -signkey TEST-ACM.key -out TEST-ACM.crt -days
 #### 인증서 체인 : crt key
 ![image](https://github.com/user-attachments/assets/60d55126-8f4f-457c-91d8-d199eda1ed0b)  
 
-![image](https://github.com/user-attachments/assets/e8bb6c53-1c55-48e5-8d4f-dbb29eba5022)
+![image](https://github.com/user-attachments/assets/e8bb6c53-1c55-48e5-8d4f-dbb29eba5022)  
 
+## 6-2 external-dns pod log 확인
+![image](https://github.com/user-attachments/assets/7c1acc7a-7392-4625-aeff-e103284abdb6)  
 
-
+## 6-3 ingress 배포
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    #alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/load-balancer-name: wth-dns-test-lb
+    alb.ingress.kubernetes.io/manage-backend-security-group-rules: "true"
+    alb.ingress.kubernetes.io/scheme: internetfacing
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06
+    alb.ingress.kubernetes.io/subnets: subnet-ID, subnet-ID
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/certificate-arn: [생성한ACM ARN]
+  name: dns-test
+spec:
+  ingressClassName: alb
+  rules:
+    - host: test.DNS-NAME
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: testsvc
+                port:
+                  number: 80
+```  
 
 
 
