@@ -90,8 +90,11 @@ k apply -f ns-serviceaccount.yaml
 # 5. external-dns.yaml 배포
 ```
 k apply -f external-dns.yaml
-```
-# 6. external-dns 테스트
+```  
+  
+---  
+  
+# 6. 🧑🏼‍💻 external-dns 테스트
 ## 6-1 openssl cli로 인증서 생성
 ```bash
 # private key 생성
