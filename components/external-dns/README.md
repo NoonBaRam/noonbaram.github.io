@@ -20,8 +20,8 @@ helm template external-dns-private external-dns/external-dns \
     --set extraArgs[0]="--aws-zone-type=private" \
     --set extraArgs[1]="--ingress-class=alb" > external-dns.yaml
 ```  
-#### 참고 URL : [external-dns-helm 배포](https://github.com/kubernetes-sigs/external-dns/tree/master/charts/external-dns)  
-# 2. IAM Policy 참고하여 IAM Role 생성
+#### HELM 배포 참고 URL : [external-dns-helm 배포](https://github.com/kubernetes-sigs/external-dns/tree/master/charts/external-dns)  
+# 2. IAM Policy 생성
 ```json
 {
     "Statement": [
