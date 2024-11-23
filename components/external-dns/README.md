@@ -25,6 +25,12 @@ helm template external-dns-private external-dns/external-dns \
     --set provider=aws \
     --set extraArgs[0]="--aws-zone-type=private" \
     --set extraArgs[1]="--ingress-class=alb" > external-dns.yaml
+```
+#### deployment의 --set policy 종류 및 설명
+```md
+upsert-only : 레코드셋 생성,업데이트 (삭제 불가능)
+sync : 레코드셋 생성,업데이트,삭제
+create-only: 레코드셋 생성 (삭제, 업데이트 불가능)
 ```  
 #### HELM 배포 참고 URL : [external-dns-helm 배포](https://github.com/kubernetes-sigs/external-dns/tree/master/charts/external-dns)  
 # 2. IAM Policy 생성
