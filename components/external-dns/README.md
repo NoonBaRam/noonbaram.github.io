@@ -1,3 +1,9 @@
+***
+# EXTERNAL DNS 구조
+![image](https://github.com/user-attachments/assets/3b803a06-298f-43ce-9aac-b32ebdb50933)
+
+***
+
 # 1. helm repo 추가 및 template 다운
 ```bash
 helm repo add external-dns https://kubernetes-sigs.github.io/external-dns/
