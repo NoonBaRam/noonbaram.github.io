@@ -1,0 +1,28 @@
+kind: ServiceAccount
+metadata:
+  annotations:
+    eks.amazonaws.com/role-arn: (acm-full 정책 적용된 role)
+  name: import-cert-service-account
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: import-cert-role
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: import-cert-role-binding
+subjects:
+  - kind: ServiceAccount
+    name: import-cert-service-account
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: import-cert-role
+  apiGroup: rbac.authorization.k8s.io
