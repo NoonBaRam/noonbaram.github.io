@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: import-cert-to-acm
+  namespace: default
+spec:
+  schedule: "* * * * *"  # 1분마다 실행
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: import-cert-service-account
+          containers:
+            - name: import-cert-to-acm
+              image: amazonlinux:2023
+              command:
+                - /bin/bash
+                - /scripts/import-cert-to-acm.sh
+              volumeMounts:
+                - name: script-volume
+                  mountPath: /scripts
+              workingDir: /tmp
+          restartPolicy: OnFailure
+          volumes:
+            - name: script-volume
+              configMap:
+                name: import-cert-script
