@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: import-cert-script
+  namespace: default
+data:
+  import-cert-to-acm.sh: |
+    #!/bin/bash
+    # kubectl이 없으면 설치
+    if ! command -v kubectl &> /dev/null
+    then
+        echo "kubectl could not be found, installing..."
+        curl -LO "https://dl.k8s.io/release/v1.31.0/bin/linux/amd64/kubectl"
+        chmod +x ./kubectl
+        mv ./kubectl /usr/local/bin/kubectl
+    fi
+    # AWS CLI가 없으면 pip로 설치
+    if ! command -v aws &> /dev/null
+    then
+        echo "aws-cli could not be found, installing via pip..."
+        curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+        python3 get-pip.py
+        pip3 install awscli
+    fi
+    # Kubernetes Secret에서 인증서 및 개인 키 추출
+    kubectl get secret k8smaster-tls -o jsonpath="{.data.tls\.crt}" | base64 --decode > /tmp/tls.crt
+    kubectl get secret k8smaster-tls -o jsonpath="{.data.tls\.key}" | base64 --decode > /tmp/tls.key
+    kubectl get secret k8smaster-tls -o jsonpath="{.data.ca\.crt}" | base64 --decode > /tmp/root-ca.crt
+    # ACM에 인증서 업로드
+    aws acm import-certificate --certificate fileb:///tmp/tls.crt --private-key fileb:///tmp/tls.key --certificate-chain fileb:///tmp/root-ca.crt
