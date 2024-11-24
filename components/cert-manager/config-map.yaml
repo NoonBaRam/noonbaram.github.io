@@ -6,7 +6,7 @@ metadata:
 data:
   import-cert-to-acm.sh: |
     #!/bin/bash
-    # kubectl이 없으면 설치
+    # kubectl 설치
     if ! command -v kubectl &> /dev/null
     then
         echo "kubectl could not be found, installing..."
@@ -14,7 +14,7 @@ data:
         chmod +x ./kubectl
         mv ./kubectl /usr/local/bin/kubectl
     fi
-    # AWS CLI가 없으면 pip로 설치
+    # AWS CLI pip로 설치
     if ! command -v aws &> /dev/null
     then
         echo "aws-cli could not be found, installing via pip..."
