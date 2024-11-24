@@ -94,6 +94,7 @@ data:
 # 6. aws acm 가져오기로 tls.crt, tls.key의 decoding 된 정보를 넣고 acm생성
 ![image](https://github.com/user-attachments/assets/f3117946-63ef-46ad-a295-cfb23836c8bf)  
 ![image](https://github.com/user-attachments/assets/b16f6c52-aa4f-4727-93d5-b87ea8a893fc)  
+#### tls.crt와 tls.key 를 넣는 이유는 tls.crt에 subj 정보들이 들어있기 때문이다.
 
 # 7. ingrss 생성
 ![image](https://github.com/user-attachments/assets/43f06842-ea3d-4c47-bef1-75d27c74e234)  
