@@ -1,9 +1,9 @@
 kind: ServiceAccount
 metadata:
-  annotations:
-    eks.amazonaws.com/role-arn: (acm-full 정책 적용된 role)
   name: import-cert-service-account
   namespace: default
+  annotations:
+    eks.amazonaws.com/role-arn: (acm-full 정책 적용된 role)
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
