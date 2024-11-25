@@ -1,0 +1,7 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: root-cluster-issuer  # ClusterIssuer의 이름
+spec:
+  ca:
+    secretName: root-ca # root.crt + root.key으로 만든 secret
