@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: k8smaster-local-cert
+  namespace: default
+spec:
+  secretName: k8smaster-tls
+  dnsNames:
+    - "k8smaster.local"
+    - "*.k8smaster.local"
+    - "test.k8smaster.local"
+  issuerRef:
+    name: root-cluster-issuer  # 위에서 생성한 ClusterIssuer 이름
+    kind: ClusterIssuer
+    group: cert-manager.io
+  duration: 1h  # 인증서 유효 기간
+  renewBefore: 55m  # 5분 전에 갱신
