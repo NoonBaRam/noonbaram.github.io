@@ -6,28 +6,10 @@ metadata:
 data:
   import-cert-to-acm.sh: |
     #!/bin/bash
-    # kubectl 설치
-    if ! command -v kubectl &> /dev/null
-    then
-        echo "kubectl could not be found, installing..."
-        curl -LO "https://dl.k8s.io/release/v1.31.0/bin/linux/amd64/kubectl"
-        chmod +x ./kubectl
-        mv ./kubectl /usr/local/bin/kubectl
-    fi
-
-    # AWS CLI pip로 설치
-    if ! command -v aws &> /dev/null
-    then
-        echo "aws-cli could not be found, installing via pip..."
-        curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-        python3 get-pip.py
-        pip3 install awscli
-    fi
 
     # 환경 변수 설정
     LOAD_BALANCER_ARN="arn:aws:elasticloadbalancing:ap-northeast-2:859234351948:loadbalancer/app/wth-dns-test-lb/9d8309a5fab32305"
     LISTENER_ARN=$(aws elbv2 describe-listeners --load-balancer-arn "$LOAD_BALANCER_ARN" --query "Listeners[0].ListenerArn" --output text)
-
     # ALB 리스너에서 기존 인증서 확인
     OLD_CERTIFICATE_ARN=$(aws elbv2 describe-listeners --listener-arn "$LISTENER_ARN" --query "Listeners[0].Certificates[0].CertificateArn" --output text)
 
@@ -39,17 +21,16 @@ data:
         # 만료일과 현재 날짜를 비교하여 남은 일수를 계산
         DAYS_LEFT=$(( ( $(date -d "$EXPIRATION_DATE" +%s) - $(date -d "$CURRENT_DATE" +%s) ) / 86400 ))
 
-        echo "Current certificate expires in $DAYS_LEFT days."
+        echo "현재 인증서 만료까지 $DAYS_LEFT 일 남았습니다."
 
-        if [ "$DAYS_LEFT" -gt 20 ]; then
-            echo "The certificate is still valid for more than 20 days. No action required."
+        if [ "$DAYS_LEFT" -gt 100 ]; then
+            echo "인증서는 아직 10일 이상 유효하므로 교체할 필요가 없습니다."
             exit 0
         fi
     else
-        echo "No existing ACM certificate found for ALB Listener."
+        echo "ALB 리스너에 기존 ACM 인증서가 없습니다."
         exit 0
     fi
-
     # 인증서 만료가 20일 이하일 경우, 새로운 인증서를 생성하고 교체
 
     # Kubernetes Secret에서 인증서 및 개인 키 추출
@@ -58,35 +39,39 @@ data:
     kubectl get secret k8smaster-tls -o jsonpath="{.data.ca\.crt}" | base64 --decode > /tmp/root-ca.crt
 
     # 신규 ACM 인증서 생성
-    echo "Importing new ACM certificate..."
+    echo "새로운 ACM 인증서를 가져오는 중..."
     CERTIFICATE_ARN=$(aws acm import-certificate --certificate fileb:///tmp/tls.crt --private-key fileb:///tmp/tls.key --certificate-chain fileb:///tmp/root-ca.crt --query 'CertificateArn' --output text)
-    echo "Imported new ACM certificate: $CERTIFICATE_ARN"
+    echo "새로운 ACM 인증서가 성공적으로 가져와졌습니다: $CERTIFICATE_ARN"
 
-    # ALB 리스너에서 기존 인증서를 새 인증서로 교체
-    echo "Updating ALB Listener to use new ACM certificate..."
-    aws elbv2 modify-listener --listener-arn "$LISTENER_ARN" --certificates CertificateArn="$CERTIFICATE_ARN"
-    echo "ALB Listener updated with new ACM certificate."
+    if [ -n "$OLD_CERTIFICATE_ARN" ]; then
+        # ALB 리스너에서 기존 인증서를 새 인증서로 교체
+        echo "ALB 리스너를 새 ACM 인증서를 사용하도록 업데이트하는 중..."
+        aws elbv2 modify-listener --listener-arn "$LISTENER_ARN" --certificates CertificateArn="$CERTIFICATE_ARN"
+        echo "ALB 리스너가 새 ACM 인증서로 업데이트되었습니다."
 
-    # 기존 인증서 삭제 루프
-    echo "Attempting to delete old ACM certificate..."
-    while true; do
-        IN_USE=$(aws elbv2 describe-listeners --listener-arn "$LISTENER_ARN" --query "Listeners[0].Certificates[?CertificateArn=='$OLD_CERTIFICATE_ARN']" --output text)
+        # 기존 인증서 삭제 루프
+        echo "기존 ACM 인증서를 삭제하는 중..."
+        while true; do
+            IN_USE=$(aws elbv2 describe-listeners --listener-arn "$LISTENER_ARN" --query "Listeners[0].Certificates[?CertificateArn=='$OLD_CERTIFICATE_ARN']" --output text)
 
-        if [ -z "$IN_USE" ]; then
-            echo "Old certificate is no longer in use. Deleting..."
-            sleep 20  # 대기 시간 추가
-            aws acm delete-certificate --certificate-arn "$OLD_CERTIFICATE_ARN"
-            if [ $? -eq 0 ]; then
-                echo "Deleted old ACM certificate: $OLD_CERTIFICATE_ARN"
-                break
+            if [ -z "$IN_USE" ]; then
+                echo "기존 인증서는 더 이상 사용되지 않습니다. 삭제 중..."
+                sleep 20  # 대기 시간 추가
+                aws acm delete-certificate --certificate-arn "$OLD_CERTIFICATE_ARN"
+                if [ $? -eq 0 ]; then
+                    echo "기존 ACM 인증서가 삭제되었습니다: $OLD_CERTIFICATE_ARN"
+                    break
+                else
+                    echo "기존 인증서를 삭제하는 데 실패했습니다. 다시 시도 중..."
+                fi
             else
-                echo "Failed to delete the old certificate. Retrying..."
+                echo "기존 인증서가 아직 사용 중입니다. 20초 후에 다시 확인합니다..."
             fi
-        else
-            echo "Old certificate is still in use. Checking again in 20 seconds..."
-        fi
 
-        sleep 20
-    done
+            sleep 20
+        done
+    else
+        echo "ALB 리스너에 기존 ACM 인증서가 없습니다."
+    fi
 
-    echo "Certificate update and deletion completed."
+    echo "인증서 업데이트 및 삭제가 완료되었습니다."
