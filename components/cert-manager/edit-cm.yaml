@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: import-cert-script
-  namespace: default
+  namespace: $어플리케이션이 있는 Namespace
 data:
   import-cert-to-acm.sh: |
     #!/bin/bash
