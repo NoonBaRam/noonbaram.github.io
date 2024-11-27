@@ -8,7 +8,7 @@ data:
     #!/bin/bash
 
     # 환경 변수 설정
-    LOAD_BALANCER_ARN="arn:aws:elasticloadbalancing:ap-northeast-2:859234351948:loadbalancer/app/wth-dns-test-lb/9d8309a5fab32305"
+    LOAD_BALANCER_ARN="ALB ARN"
     LISTENER_ARN=$(aws elbv2 describe-listeners --load-balancer-arn "$LOAD_BALANCER_ARN" --query "Listeners[0].ListenerArn" --output text)
     # ALB 리스너에서 기존 인증서 확인
     OLD_CERTIFICATE_ARN=$(aws elbv2 describe-listeners --listener-arn "$LISTENER_ARN" --query "Listeners[0].Certificates[0].CertificateArn" --output text)
