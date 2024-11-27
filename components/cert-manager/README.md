@@ -2,7 +2,10 @@
 ## 1-1
 ``` bash
 k create secret tls -n cert-manager root-ca --cert root.crt --key root.key
-```  
+```
+* root.crt파일과 root.key파일 을 tls 옵션으로 secrets을 생성 하는 이유
+* root인증서가 self signed을 하고 Certificate를 통해 사설 도메인에 대한 인증서를 발급 하기 위함
+
 # 2. 생성 된 secret으로 cluster issuer 생성
 ## 2-1
 ```yaml
