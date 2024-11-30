@@ -25,8 +25,52 @@ readOnlyRootFilesystem: true -> false 변경
 # 3. subPath로 configmap 마운트
 ![image](https://github.com/user-attachments/assets/6f3861d8-f106-4e9b-bdf2-dcc998628740)  
 
-# 4. helm cli로 배포 후 pod 확인
+# 4. servicePort 변경 8080 -> 8081
+![image](https://github.com/user-attachments/assets/de582713-76e3-44d0-80d6-72f58f4b0da0)  
+
+# 5. ingress 생성
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/load-balancer-name: 생성될 LB 이름
+    alb.ingress.kubernetes.io/manage-backend-security-group-rules: "true"
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06
+    alb.ingress.kubernetes.io/subnets: subnet ID
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+    alb.ingress.kubernetes.io/healthcheck-path: /login # 작성 안하면 unhealth로 나옴
+    #cert-manager.io/cluster-issuer: root-cluster-issuer
+  name: jenkins
+  namespace: jenkins
+spec:
+  ingressClassName: alb
+  tls:
+    - hosts:
+        - jenkins.k8smaster.local
+      #secretName: jenkins-key-store
+      secretName: jenkins-tls
+  rules:
+    - host: jenkins.k8smaster.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jenkins
+                port:
+                  number: 8081 # 변경한 ServicePort
+```  
+# helm cli로 배포 후 pod 확인
 ```bash
 helm upgrade -n jenkins jenkins jenkins/jenkins -f /home/ec2-user/yaml/jenkins/jenkins/dev-values.yaml
 ```  
 ![image](https://github.com/user-attachments/assets/57d77c7d-e345-4087-9250-3c60cb44c7ba)  
+
+## 윈도우 서버에서 jenkins 확인
+![image](https://github.com/user-attachments/assets/cd715be5-4bdb-49db-8f13-3cbf88faefc9)  
