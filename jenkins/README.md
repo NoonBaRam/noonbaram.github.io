@@ -65,9 +65,18 @@ spec:
 ```  
 # helm cli로 배포 후 pod 확인
 ```bash
+# helm 배포 명령어
 helm upgrade -n jenkins jenkins jenkins/jenkins -f /home/ec2-user/yaml/jenkins/jenkins/dev-values.yaml
+
+# jenkins pod 접속 명령어
+k exec -n jenkins jenkins-0 -it -- bash
+
+# jenkins 접속 후 key import 됐는지 확인 명령어
+keytool -list -keystore /opt/java/openjdk/lib/security/cacerts -storepass changeit -noprompt | grep wth
 ```  
-![image](https://github.com/user-attachments/assets/57d77c7d-e345-4087-9250-3c60cb44c7ba)  
+![image](https://github.com/user-attachments/assets/c8878021-e6f4-492d-8f7f-4b0680ac90a9)  
+![image](https://github.com/user-attachments/assets/56d9133a-2575-4a89-a77c-908dc3f5a916)  
+![image](https://github.com/user-attachments/assets/8f7216bc-d1f1-4669-81a9-6411823f1309)  
 
 ## 윈도우 서버에서 jenkins 확인
 ![image](https://github.com/user-attachments/assets/cd715be5-4bdb-49db-8f13-3cbf88faefc9)  
