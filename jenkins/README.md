@@ -42,7 +42,6 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
     alb.ingress.kubernetes.io/healthcheck-path: /login # 작성 안하면 unhealth로 나옴
-    #cert-manager.io/cluster-issuer: root-cluster-issuer
   name: jenkins
   namespace: jenkins
 spec:
