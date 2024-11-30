@@ -16,10 +16,8 @@ readOnlyRootFilesystem: true -> false 변경
         - "sh"
         - "-c"
         - |
-          echo "crt import"
           keytool -importcert -file /tmp/wth/wth-root.crt -alias wth-root -keystore /opt/java/openjdk/lib/security/cacerts -storepass changeit -noprompt && \
-          echo "certificate 복사 /etc/ssl/certs directory"
-          cp /tmp/wth/wth-root.crt /etc/ssl/certs/
+          cat /tmp/wth/jenkins-ca.crt >> /etc/ssl/certs/ca-certificates.crt
 ```
 
 # 3. subPath로 configmap 마운트
