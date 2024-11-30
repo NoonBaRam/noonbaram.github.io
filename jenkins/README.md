@@ -6,7 +6,7 @@ readOnlyRootFilesystem: true -> false 변경
 ![image](https://github.com/user-attachments/assets/89279cd3-5906-41ef-84fd-00432f60c9d4)  
 
 # 2. lifecycle 사용
-![image](https://github.com/user-attachments/assets/ea5e029c-92f2-4ef2-b32a-90e9fead977c)  
+![image](https://github.com/user-attachments/assets/7cddee69-0b0c-4670-822a-7d5f883e7a27)  
 ```yaml
 # -- Lifecycle specification for controller-container
   lifecycle:
