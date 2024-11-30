@@ -26,4 +26,7 @@ readOnlyRootFilesystem: true -> false 변경
 ![image](https://github.com/user-attachments/assets/6f3861d8-f106-4e9b-bdf2-dcc998628740)  
 
 # 4. helm cli로 배포 후 pod 확인
+```bash
+helm upgrade -n jenkins jenkins jenkins/jenkins -f /home/ec2-user/yaml/jenkins/jenkins/dev-values.yaml
+```  
 ![image](https://github.com/user-attachments/assets/57d77c7d-e345-4087-9250-3c60cb44c7ba)  
