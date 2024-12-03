@@ -6,6 +6,7 @@ tar -zxf $HOME/cli/eksctl_Linux_amd64.tar.gz -C $HOME/cli/
 sudo cp $HOME/cli/eksctl /usr/local/bin
 eksctl completion bash >> $HOME/.bashrc-completion
 source $HOME/.bashrc-completion
+sleep 5
 echo '~!~!~!~!~!~! eksctl 설치 완료 ~!~!~!~!~!~!'
 
 # kubectl 설치
