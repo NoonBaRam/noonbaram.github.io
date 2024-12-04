@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    environment {
+        // 기본 AWS CLI 자격 증명 (선택 사항, 기본 자격 증명으로 사용할 수 있음)
+        AWS_DEFAULT_REGION = 'us-east-1'
+        AWS_PROFILE = 'your-aws-profile' // 필요에 따라 AWS CLI 프로파일 설정
+    }
+    stages {
+        stage('Assume AWS Role') {
+            steps {
+                script {
+                    // AWS sts assume-role 명령어를 실행하여 임시 자격 증명 받기
+                    def assumeRole = sh(script: """
+                        ROLE_ARN="arn:aws:iam::ACCOUNT_ID:role/YOUR_ROLE_NAME"
+                        SESSION_NAME="jenkins-session"
+                        CREDS=\$(aws sts assume-role --role-arn \$ROLE_ARN --role-session-name \$SESSION_NAME --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" --output text)
+                        export AWS_ACCESS_KEY_ID=\$(echo \$CREDS | awk '{print \$1}')
+                        export AWS_SECRET_ACCESS_KEY=\$(echo \$CREDS | awk '{print \$2}')
+                        export AWS_SESSION_TOKEN=\$(echo \$CREDS | awk '{print \$3}')
+                        echo "AWS credentials assumed"
+                    """, returnStatus: true, returnStdout: true)
+                    echo "Assumed Role: ${assumeRole}"
+                }
+            }
+        }
+        
+        stage('Terraform Plan') {
+            steps {
+                script {
+                    // Terraform 명령을 실행할 때 AWS 자격 증명이 이미 설정된 상태입니다.
+                    sh 'terraform init'   // Terraform 초기화
+                    sh 'terraform plan'   // Terraform 계획
+                }
+            }
+        }
+        
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    // Terraform을 실행하여 인프라 적용
+                    sh 'terraform apply -auto-approve' // 자동 승인하여 Terraform 실행
+                }
+            }
+        }
+    }
+    post {
+        always {
+            // 임시 자격 증명 삭제
+            sh 'unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN'
+        }
+    }
+}
