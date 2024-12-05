@@ -1,0 +1,88 @@
+def PROJECT_NAME = "aws-infra-terraform"
+def gitUrl = "https://주소/깃랩 프로젝트명/레파지토리명.git"
+# 예시 def gitUrl = "https://주소/bsp-pj/aws-infra-terraform.git"
+def gitOpsUrl = gitUrl과 동일
+def opsBranch = "main"
+
+podTemplate(containers: [
+    containerTemplate(name: 'aws-jenkins-base', image: 'URI', command: 'sleep', args: '99'),
+    ],
+    volumes: [
+        hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+        secretVolume(mountPath: '/etc/pki/ca-trust/source/anchors', secretName: 'root-ca.crt인증서로 만든 secret')
+    ]
+) {
+    node(POD_LABEL) {
+        stage('Setup Git Config') {
+            container('aws-jenkins-base') {
+                sh """
+                    update-ca-trust
+                    git config --global user.name "Jenkins"
+                    git config --global user.email "asdf@adsf.com"
+                """
+            }
+        }
+        
+        //Gitlab Repo 가져오기
+        stage('Clone Repositories') {
+            container('aws-jenkins-base') {
+                withCredentials([string(credentialsID: 'terraform-test', variable: 'GIT_TOKEN')]) {
+                    sh """
+                        echo "Cloning terraform repository..."
+                        git clone https://gitlab-ci-token:\${GIT_TOKEN}@gitlabURL입력/프로젝트명/레파지토리명.git terraform --branch main
+                        """
+                  }
+            }
+        }
+
+        // AWS sts assume-role 명령어를 실행하여 임시 자격 증명 받아 환경 변수에 설정
+        stage('Assume Role') {
+            container('aws-jenkins-base') {
+                script {
+                    def assumeRoleCmd = """
+                        ROLE_ARN="arn:aws:iam::ACCOUNT_ID:role/YOUR_ROLE_NAME"
+                        SESSION_NAME="jenkins-session"
+                        CREDS=\$(aws sts assume-role --role-arn \$ROLE_ARN --role-session-name \$SESSION_NAME --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" --output text)
+                        echo \$CREDS
+                    """
+                    def creds = sh(script: assumeRoleCmd, returnStdout: true).trim().split()
+                    env.AWS_ACCESS_KEY_ID = creds[0]
+                    env.AWS_SECRET_ACCESS_KEY = creds[1]
+                    env.AWS_SESSION_TOKEN = creds[2]
+                }
+            }
+        }
+
+        stage('Terraform Init & Plan') {
+            steps {
+                container('aws-jenkins-base') {
+                    sh """
+                        aws sts get-caller-identity
+                        cd terraform/cicd # tf파일이 있는곳으로 이동
+                        source ./get-setenv.sh configurations/cicd.tfvars  # Terraform init 명령어
+                        terraform plan --var-file=configurations/cicd.tfvars  # Terraform plan 명령어
+                        terraform init   # Terraform 초기화
+                        terraform plan   # Terraform 계획
+                    """
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                container('aws-jenkins-base') {
+                    sh """
+                        terraform apply --var-file=configurations/cicd.tfvars  # Terraform 적용
+                    """
+                }
+            }
+        }
+
+        stage('Workspace Clear') {
+            container('aws-jenkins-base') {
+                echo "Cleaning up workspace..."
+                cleanWs()
+            }
+        }
+    }
+}
