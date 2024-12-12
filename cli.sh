@@ -4,8 +4,8 @@ mkdir /home/ec2-user/cli
 wget -P $HOME/cli/ https://github.com/eksctl-io/eksctl/releases/download/v0.194.0/eksctl_Linux_amd64.tar.gz
 tar -zxf $HOME/cli/eksctl_Linux_amd64.tar.gz -C $HOME/cli/
 sudo cp $HOME/cli/eksctl /usr/local/bin
-eksctl completion bash >> $HOME/.bashrc-completion
-source $HOME/.bashrc-completion
+eksctl completion bash >> $HOME/.bash_completion
+source $HOME/.bash_completion
 sleep 5
 echo '~!~!~!~!~!~! eksctl 설치 완료 ~!~!~!~!~!~!'
 
