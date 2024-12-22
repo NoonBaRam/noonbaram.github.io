@@ -1,6 +1,6 @@
 #!/bin/bash
 # eksctl 설치
-mkdir /home/ec2-user/cli
+mkdir $HOME/cli
 wget -P $HOME/cli/ https://github.com/eksctl-io/eksctl/releases/download/v0.194.0/eksctl_Linux_amd64.tar.gz
 tar -zxf $HOME/cli/eksctl_Linux_amd64.tar.gz -C $HOME/cli/
 sudo cp $HOME/cli/eksctl /usr/local/bin
