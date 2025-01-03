@@ -49,7 +49,6 @@ spec:
   tls:
     - hosts:
         - jenkins.k8smaster.local
-      #secretName: jenkins-key-store
       secretName: jenkins-tls
   rules:
     - host: jenkins.k8smaster.local
