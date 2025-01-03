@@ -12,7 +12,7 @@ echo '~!~!~!~!~!~! eksctl 설치 완료 ~!~!~!~!~!~!'
 # kubectl 설치
 wget -P $HOME/cli/  https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.0/2024-09-12/bin/linux/amd64/kubectl
 chmod +x $HOME/cli/kubectl
-mkdir -p $HOME/bin && cp $HOME/cli/kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+mkdir $HOME/bin && cp $HOME/cli/kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
 echo 'source <(kubectl completion bash)' >>$HOME/.bashrc
 echo 'alias k=kubectl' >>$HOME/.bashrc
 echo 'complete -o default -F __start_kubectl k' >>$HOME/.bashrc
