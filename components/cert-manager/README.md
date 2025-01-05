@@ -1,4 +1,18 @@
-# 1. root-ca.crt, root-ca.key 파일을 secret으로 만들기 tls옵션으로 
+# Self-Signed 인증서 생성
+```bash
+openssl genrsa -out root-ca.key
+openssl req -x509 -new -nodes -key root-ca.key -sha256 -days 365 -out root-ca.crt -subj "/C=KR/ST=Seoul/O=RootCA/CN=testRootCA"
+```  
+![image](https://github.com/user-attachments/assets/2764248a-f6d6-44aa-8bdc-97b4414d638f)  
+
+## 확인
+```bash
+openssl x509 -in root-ca.crt -text -noout
+```  
+![image](https://github.com/user-attachments/assets/6709e75d-cd12-4b75-bec5-b821e348f56d)  
+Issuer의 정보와 아래 Subject 정보가 동일하게 나오면 Self-Signed 된 인증서다.
+
+# 1. root-ca.crt, root-ca.key 파일로 secret 생성
 ## 1-1
 ``` bash
 k create secret tls -n cert-manager root-ca --cert root.crt --key root.key
