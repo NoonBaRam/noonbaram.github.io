@@ -4,6 +4,11 @@ openssl genrsa -out root-ca.key
 openssl req -x509 -new -nodes -key root-ca.key -sha256 -days 365 -out root-ca.crt -subj "/C=KR/ST=Seoul/O=RootCA/CN=testRootCA"
 ```  
 ![image](https://github.com/user-attachments/assets/2764248a-f6d6-44aa-8bdc-97b4414d638f)  
+필드	값	설명  
+/C=	Country: 국가 코드 (ISO 3166-1 알파-2 표준, 예: KR은 한국).  
+/ST= State: 주 또는 도 (대한민국에서는 서울, 경기도 등으로 사용).  
+/O=	Organization: 조직 이름. Root 인증 기관일 경우 CA 이름을 적음.  
+/CN= Common Name: 일반적으로 도메인 이름이 들어가지만, Root CA인 경우 인증 기관 이름을 사용.  
 
 ## 확인
 ```bash
