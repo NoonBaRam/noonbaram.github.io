@@ -4,6 +4,7 @@ controller: 에 포함되어 있는 runAsUser: 1000 -> 0 변경
 readOnlyRootFilesystem: true -> false 변경  
 ![image](https://github.com/user-attachments/assets/a74ce7c2-86ec-4a4f-8a57-20eb7f1717e2)
 ![image](https://github.com/user-attachments/assets/89279cd3-5906-41ef-84fd-00432f60c9d4)  
+![image](https://github.com/user-attachments/assets/89279cd3-5906-41ef-84fd-00432f60c9d4)  
 
 # 2. lifecycle 사용
 ![image](https://github.com/user-attachments/assets/7cddee69-0b0c-4670-822a-7d5f883e7a27)  
