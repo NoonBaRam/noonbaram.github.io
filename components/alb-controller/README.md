@@ -24,8 +24,8 @@ cert-manager.yaml파일 내용 http://git.noonbaram.shop/components/alb-controll
 ## cert-manager 생성
 ```bash
 kubectl apply --validate=false -f cert-manager.yaml
-```  
-![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/15d9407d-7360-4307-b427-ac0d75dd56e3)  
+```
+![image](https://github.com/user-attachments/assets/3c756950-143a-4ee8-b205-9e12ebe13a5c)  
 ```bash
 kubectl get po -n cert-manager
 ```  
