@@ -21,11 +21,14 @@ k apply -f eni-config.yaml
 ## 1-2 VPC CNI 환경 변수 추가
 ```bash
 # CUSTOM_NETWORK_CFG  false -> true 변경
-$ kubectl set env ds -n kube-system aws-node AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG=true
+kubectl set env ds -n kube-system aws-node AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG=true
 
 # Labels 자동 매칭
-$ kubectl set env ds -n kube-system aws-node ENI_CONFIG_LABEL_DEF=topology.kubernetes.io/zone
-```
+kubectl set env ds -n kube-system aws-node ENI_CONFIG_LABEL_DEF=topology.kubernetes.io/zone
+
+# max-pod 옵션 있는경우
+kubectl set env ds -n kube-system aws-node ENABLE_PREFIX_DELEGATION=true
+```  
 ## 1-2 확인  
 ```bash
 kubectl describe ds -n kube-system aws-node | grep -i cfg
