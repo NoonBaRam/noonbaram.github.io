@@ -59,6 +59,16 @@ sed -i.bak -e 's|YOUR-CLUSTER-NAME|WTH-EKS|' ./alb-controller-v2.9.2.yaml
 ```bash
 kubectl apply -f alb-controller-v2.9.2.yaml
 ```  
+![image](https://github.com/user-attachments/assets/9e830216-0d55-454b-91df-6b1bfc9e4b55)  
+
+## 아래 명령어로 ingclass.yaml 다운
+```bash
+wget https://git.noonbaram.shop/components/alb-controller/ingclass.yaml
+```  
+## 생성
+```bash
+kubectl apply -f ingclass.yaml
+```  
 
 # ingress-class 다운 및 생성
 ✅ ingress class가 없으면 오류가 발생  
@@ -74,13 +84,3 @@ ingressclassparams는 없기에 `created` 로 나온다.
 ingress를 describe 했을때 위와 같은 오류가 나온다면 아래 명령어를 실행 하자  
 배포 후 생성한 ingress를 describe 하여 확인한 결과  
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/8adb5cfa-5cdd-4456-8932-09196187927c)
-
-
-## 아래 명령어로 ingclass.yaml 다운
-```bash
-wget https://git.noonbaram.shop/components/alb-controller/ingclass.yaml
-```  
-## 생성
-```bash
-kubectl apply -f ingclass.yaml
-```
