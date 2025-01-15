@@ -82,7 +82,7 @@ ingressclass는 설치되어 있으므로 `unchanged`
 ingressclassparams는 없기에 `created` 로 나오거나  
 
 ![image](https://github.com/user-attachments/assets/a18647db-6ac2-43bd-9c37-db2f46575f4a)  
-둘다 'created' 로 나옵니다.  
+둘다 `created` 로 나옵니다.  
 
 ingress를 describe 했을때 위와 같은 오류가 나온다면 아래 명령어를 실행 하자  
 배포 후 생성한 ingress를 describe 하여 확인한 결과  
