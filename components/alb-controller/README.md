@@ -61,29 +61,28 @@ kubectl apply -f alb-controller-v2.9.2.yaml
 ```  
 ![image](https://github.com/user-attachments/assets/9e830216-0d55-454b-91df-6b1bfc9e4b55)  
 
-## 아래 명령어로 ingclass.yaml 다운
-```bash
-wget https://git.noonbaram.shop/components/alb-controller/ingclass.yaml
-```  
-## 생성
-```bash
-kubectl apply -f ingclass.yaml
-```  
-
 # ingress-class 다운 및 생성
+
+```bash
+wget https://git.noonbaram.shop/components/alb-controller/ingclass.yaml && kubectl apply -f ingclass.yaml
+```
+
 ✅ ingress class가 없으면 오류가 발생  
+
 ```html
 Failed deploy model due to the server could not find the requested resource (post targetgroupbindings.elbv2.k8s.aws)
 failed load groupID due to invalid ingress class: IngressClassParams.elbv2.k8s.aws "alb" not found
 ```  
-그렇기에 ingressclass 를 다운 받아 apply하면 두가지의 출력을 확인 할 수 있다.  
+그렇기에 ingressclass 를 다운 받아 apply하면 두가지 중 하나의 출력을 확인 할 수 있다.  
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/9c39d278-e5a3-4240-891d-2e5f39b5c8ab)  
 ingressclass는 설치되어 있으므로 `unchanged`  
-ingressclassparams는 없기에 `created` 로 나오거나  
+ingressclassparams는 없기에 `created` 로 나오거나   
 
 ![image](https://github.com/user-attachments/assets/a18647db-6ac2-43bd-9c37-db2f46575f4a)  
-둘다 `created` 로 나옵니다.  
+둘다 `created` 로 나옵니다.   
 
-ingress를 describe 했을때 위와 같은 오류가 나온다면 아래 명령어를 실행 하자  
-배포 후 생성한 ingress를 describe 하여 확인한 결과  
-![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/8adb5cfa-5cdd-4456-8932-09196187927c)
+### 확인
+```bash
+kubectl logs -n kube-system aws-load-balancer-controller-5fd494fcdf-bgxwb
+```  
+![image](https://github.com/user-attachments/assets/34d143c4-ceb0-4df9-9fd2-5c96270b4fad)  
