@@ -76,11 +76,14 @@ kubectl apply -f ingclass.yaml
 Failed deploy model due to the server could not find the requested resource (post targetgroupbindings.elbv2.k8s.aws)
 failed load groupID due to invalid ingress class: IngressClassParams.elbv2.k8s.aws "alb" not found
 ```  
-그렇기에 ingressclass 를 다운 받아 apply하면 두가지의 출력을 확인 할 수 있다.
+그렇기에 ingressclass 를 다운 받아 apply하면 두가지의 출력을 확인 할 수 있다.  
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/9c39d278-e5a3-4240-891d-2e5f39b5c8ab)  
-
 ingressclass는 설치되어 있으므로 `unchanged`  
-ingressclassparams는 없기에 `created` 로 나온다.  
+ingressclassparams는 없기에 `created` 로 나오거나  
+
+![image](https://github.com/user-attachments/assets/a18647db-6ac2-43bd-9c37-db2f46575f4a)  
+둘다 'created' 로 나옵니다.  
+
 ingress를 describe 했을때 위와 같은 오류가 나온다면 아래 명령어를 실행 하자  
 배포 후 생성한 ingress를 describe 하여 확인한 결과  
 ![image](https://github.com/NoonBaRam/noonbaram.github.io/assets/132915445/8adb5cfa-5cdd-4456-8932-09196187927c)
