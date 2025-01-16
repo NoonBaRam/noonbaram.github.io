@@ -59,8 +59,8 @@ podTemplate(containers: [
                     sh """
                         aws sts get-caller-identity
                         cd terraform/cicd # tf파일이 있는곳으로 이동
-                        source ./get-setenv.sh configurations/cicd.tfvars  # Terraform init 명령어
-                        terraform plan --var-file=configurations/cicd.tfvars  # Terraform plan 명령어
+                        source ./get-setenv.sh configur/cicd.tfvars  # Terraform init 명령어
+                        terraform plan --var-file=configur/cicd.tfvars  # Terraform plan 명령어
                         terraform init   # Terraform 초기화
                         terraform plan   # Terraform 계획
                     """
@@ -72,7 +72,7 @@ podTemplate(containers: [
             steps {
                 container('aws-jenkins-base') {
                     sh """
-                        terraform apply --var-file=configurations/cicd.tfvars  # Terraform 적용
+                        terraform apply --var-file=configur/cicd.tfvars  # Terraform 적용
                     """
                 }
             }
