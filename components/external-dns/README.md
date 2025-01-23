@@ -112,10 +112,10 @@ k apply -f external-dns.yaml
 openssl genrsa -out TEST-ACM.key 2048
 
 # csr(Certificate Signing Request) 생성
-openssl req -new -key TEST-ACM.key -out TEST-ACM.csr -subj "/C=US/ST=State/L=City/O=YourOrganization/OU=IT/CN=*.DNS-NAME"
+openssl req -new -key TEST-ACM.key -out TEST-ACM.csr -subj "/C=US/ST=State/L=City/O=YourOrganization/OU=IT/CN=*.dns-name"
 
 # 인증서 본문 겸 체인 키 생성(1년 인증서)
-openssl x509 -req -in TEST-ACM.csr -signkey TEST-ACM.key -out TEST-ACM.crt -days 365 -extfile <(printf "[v3_req]\nsubjectAltName=DNS:DNS-NAME,DNS:*.DNS-NAME") -extensions v3_req
+openssl x509 -req -in TEST-ACM.csr -signkey TEST-ACM.key -out TEST-ACM.crt -days 365 -extfile <(printf "[v3_req]\nsubjectAltName=DNS:dns-name,DNS:*.dns-name") -extensions v3_req
 ```  
 ![image](https://github.com/user-attachments/assets/e873d46f-294a-4cb8-bd3d-1692abae2b94)  
 
