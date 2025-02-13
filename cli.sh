@@ -10,7 +10,7 @@ sleep 5
 echo '~!~!~!~!~!~! eksctl 설치 완료 ~!~!~!~!~!~!'
 
 # kubectl 설치
-wget -P $HOME/cli/  https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.0/2024-09-12/bin/linux/amd64/kubectl
+wget -P $HOME/cli/ https://s3.us-west-2.amazonaws.com/amazon-eks/1.32.0/2024-12-20/bin/linux/amd64/kubectl
 chmod +x $HOME/cli/kubectl
 mkdir $HOME/bin && cp $HOME/cli/kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
 echo 'source <(kubectl completion bash)' >>$HOME/.bashrc
@@ -42,4 +42,4 @@ $HOME/cli/get_helm.sh
 echo 'source <(helm completion bash)' >> ~/.bashrc
 echo '~!~!~!~!~!~! helm 설치 완료 ~!~!~!~!~!~!'
 echo 'eksctl, kubectl, terraform, docker, helm CLI 설치 완료 됐어요.'
-echo 'EC2 SSH 재 접속 하세요'
+echo 'EC2 SSH 재 접속 하세요'  
