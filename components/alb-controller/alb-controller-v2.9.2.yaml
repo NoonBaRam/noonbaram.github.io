@@ -86,6 +86,15 @@ spec:
                 - dualstack
                 - dualstack-without-public-ipv4
                 type: string
+              ipamConfiguration:
+                description: IPAMConfiguration defines the IPAM settings for a Load
+                  Balancer.
+                properties:
+                  ipv4IPAMPoolId:
+                    description: IPv4IPAMPoolId defines the IPAM pool ID used for
+                      IPv4 Addresses on the ALB.
+                    type: string
+                type: object
               listeners:
                 description: Listeners define a list of listeners with their protocol,
                   port and attributes.
@@ -134,6 +143,18 @@ spec:
                   - value
                   type: object
                 type: array
+              minimumLoadBalancerCapacity:
+                description: MinimumLoadBalancerCapacity define the capacity reservation
+                  for LoadBalancers for all Ingress that belong to IngressClass with
+                  this IngressClassParams.
+                properties:
+                  capacityUnits:
+                    description: The Capacity Units Value.
+                    format: int32
+                    type: integer
+                required:
+                - capacityUnits
+                type: object
               namespaceSelector:
                 description: |-
                   NamespaceSelector restrict the namespaces of Ingresses that are allowed to specify the IngressClass with this IngressClassParams.
@@ -276,6 +297,11 @@ spec:
       name: ARN
       priority: 1
       type: string
+    - description: The AWS TargetGroup's Name
+      jsonPath: .spec.targetGroupName
+      name: NAME
+      priority: 2
+      type: string
     - jsonPath: .metadata.creationTimestamp
       name: AGE
       type: date
@@ -304,6 +330,19 @@ spec:
           spec:
             description: TargetGroupBindingSpec defines the desired state of TargetGroupBinding
             properties:
+              assumeRoleExternalId:
+                description: IAM Role ARN to assume when calling AWS APIs. Needed
+                  to assume a role in another account and prevent the confused deputy
+                  problem. https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html
+                type: string
+              iamRoleArnToAssume:
+                description: IAM Role ARN to assume when calling AWS APIs. Useful
+                  if the target group is in a different AWS account
+                type: string
+              multiClusterTargetGroup:
+                description: MultiClusterTargetGroup Denotes if the TargetGroup is
+                  shared among multiple clusters
+                type: boolean
               networking:
                 description: networking provides the networking setup for ELBV2 LoadBalancer
                   to access targets in TargetGroup.
@@ -400,6 +439,9 @@ spec:
                 description: targetGroupARN is the Amazon Resource Name (ARN) for
                   the TargetGroup.
                 type: string
+              targetGroupName:
+                description: targetGroupName is the Name of the TargetGroup.
+                type: string
               targetType:
                 description: targetType is the TargetType of TargetGroup. If unspecified,
                   it will be automatically inferred.
@@ -409,7 +451,6 @@ spec:
                 type: string
             required:
             - serviceRef
-            - targetGroupARN
             type: object
           status:
             description: TargetGroupBindingStatus defines the observed state of TargetGroupBinding
@@ -442,6 +483,11 @@ spec:
       name: ARN
       priority: 1
       type: string
+    - description: The AWS TargetGroup's Name
+      jsonPath: .spec.targetGroupName
+      name: NAME
+      priority: 2
+      type: string
     - jsonPath: .metadata.creationTimestamp
       name: AGE
       type: date
@@ -470,6 +516,15 @@ spec:
           spec:
             description: TargetGroupBindingSpec defines the desired state of TargetGroupBinding
             properties:
+              assumeRoleExternalId:
+                description: IAM Role ARN to assume when calling AWS APIs. Needed
+                  to assume a role in another account and prevent the confused deputy
+                  problem. https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html
+                type: string
+              iamRoleArnToAssume:
+                description: IAM Role ARN to assume when calling AWS APIs. Useful
+                  if the target group is in a different AWS account
+                type: string
               ipAddressType:
                 description: ipAddressType specifies whether the target group is of
                   type IPv4 or IPv6. If unspecified, it will be automatically inferred.
@@ -477,6 +532,10 @@ spec:
                 - ipv4
                 - ipv6
                 type: string
+              multiClusterTargetGroup:
+                description: MultiClusterTargetGroup Denotes if the TargetGroup is
+                  shared among multiple clusters
+                type: boolean
               networking:
                 description: networking defines the networking rules to allow ELBV2
                   LoadBalancer to access targets in TargetGroup.
@@ -623,7 +682,9 @@ spec:
               targetGroupARN:
                 description: targetGroupARN is the Amazon Resource Name (ARN) for
                   the TargetGroup.
-                minLength: 1
+                type: string
+              targetGroupName:
+                description: targetGroupName is the Name of the TargetGroup.
                 type: string
               targetType:
                 description: targetType is the TargetType of TargetGroup. If unspecified,
@@ -638,7 +699,6 @@ spec:
                 type: string
             required:
             - serviceRef
-            - targetGroupARN
             type: object
           status:
             description: TargetGroupBindingStatus defines the observed state of TargetGroupBinding
@@ -713,6 +773,15 @@ metadata:
     app.kubernetes.io/name: aws-load-balancer-controller
   name: aws-load-balancer-controller-role
 rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - create
+  - delete
+  - get
+  - update
 - apiGroups:
   - ""
   resources:
@@ -924,7 +993,7 @@ spec:
       - args:
         - --cluster-name=YOUR-CLUSTER-NAME
         - --ingress-class=alb
-        image: public.ecr.aws/eks/aws-load-balancer-controller:v2.9.2
+        image: public.ecr.aws/eks/aws-load-balancer-controller:v2.12.0
         livenessProbe:
           failureThreshold: 2
           httpGet:
@@ -1031,7 +1100,7 @@ webhooks:
       name: aws-load-balancer-webhook-service
       namespace: kube-system
       path: /mutate-v1-pod
-  failurePolicy: Fail
+  failurePolicy: Ignore
   name: mpod.elbv2.k8s.aws
   namespaceSelector:
     matchExpressions:
