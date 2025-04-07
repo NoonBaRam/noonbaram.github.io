@@ -35,7 +35,7 @@
 
 # 2. Cluster Autoscaler yaml 다운  
 ```bash
-wget https://raw.githubusercontent.com/kubernetes/autoscaler/refs/heads/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+wget https://git.noonbaram.shop/components/cluster-autoscaler/cluster-autoscaler.yaml
 ```
 
 # 3. Yaml 수정
