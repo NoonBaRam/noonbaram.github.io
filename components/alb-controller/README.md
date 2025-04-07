@@ -33,31 +33,31 @@ kubectl get po -n cert-manager
 
 # 3. alb-controller-v2.9.2 다운 및 수정 후 생성
 ## alb-controller 다운
-### 아래 명령어로 alb-controller-v2.9.2.yaml 파일 다운
+### 아래 명령어로 alb-controller-v2.12.0.yaml 파일 다운
 ```bash
-wget http://git.noonbaram.shop/components/alb-controller/alb-controller-v2.9.2.yaml
+wget http://git.noonbaram.shop/components/alb-controller/alb-controller-v2.12.0.yaml
 ```  
-alb-controller-v2.9.2.yaml파일 내용 http://git.noonbaram.shop/components/alb-controller/alb-controller-v2.9.2.yaml  
+alb-controller-v2.12.0.yaml파일 내용 http://git.noonbaram.shop/components/alb-controller/alb-controller-v2.12.0.yaml  
 ## YOUR-IAM-ROLE-ARN 수정
 ```bash
-sed -i.bak -e 's|YOUR-IAM-ROLE-ARN|my-iam-arn|' ./alb-controller-v2.9.2.yaml
+sed -i.bak -e 's|YOUR-IAM-ROLE-ARN|my-iam-arn|' ./alb-controller-v2.12.0.yaml
 ```  
 ![image](https://github.com/user-attachments/assets/7202a744-b80f-4692-b3f2-70e755fdc606)  
 
 ## YOUR-CLUSTER-NAME 수정
 ```bash
-sed -i.bak -e 's|YOUR-CLUSTER-NAME|my-cluster|' ./alb-controller-v2.9.2.yaml
+sed -i.bak -e 's|YOUR-CLUSTER-NAME|my-cluster|' ./alb-controller-v2.12.0.yaml
 ```  
 ![image](https://github.com/user-attachments/assets/7f7b5246-3eec-4c7e-9825-0d79104f611c)  
 
 ### <예시>
 ```bash
-sed -i.bak -e 's|YOUR-CLUSTER-NAME|WTH-EKS|' ./alb-controller-v2.9.2.yaml
+sed -i.bak -e 's|YOUR-CLUSTER-NAME|WTH-EKS|' ./alb-controller-v2.12.0.yaml
 ```  
 
-## alb-controller-v2.9.2.yaml 생성
+## alb-controller-v2.12.0.yaml 생성
 ```bash
-kubectl apply -f alb-controller-v2.9.2.yaml
+kubectl apply -f alb-controller-v2.12.0.yaml
 ```  
 ![image](https://github.com/user-attachments/assets/9e830216-0d55-454b-91df-6b1bfc9e4b55)  
 
