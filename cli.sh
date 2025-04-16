@@ -42,7 +42,6 @@ $HOME/cli/get_helm.sh
 echo 'source <(helm completion bash)' >> ~/.bashrc
 echo '~!~!~!~!~!~! helm 설치 완료 ~!~!~!~!~!~!'
 echo 'eksctl, kubectl, terraform, docker, helm CLI 설치 완료 됐어요.'
-echo 'EC2 SSH 재 접속 하세요'  
 
 # ArgoCD CLI 설치
 wget --show-progress -q -O /home/ec2-user/cli/argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
