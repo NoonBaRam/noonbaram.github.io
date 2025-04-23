@@ -57,7 +57,8 @@ metadata:
 ## 3-2 Image URI, Cluster Name 변경
 ![image](https://github.com/user-attachments/assets/e0526fb8-07c9-4ac2-83e3-f187e9551886)  
 
-#### image의 맨뒤에 v1.xx.x 는 현재 사용하는 Cluster의 버전을 명시
+#### image의 맨뒤에 v1.xx.x 는 현재 사용하는 Cluster의 버전을 명시  
+![image](https://github.com/user-attachments/assets/c7623a91-d58a-4d2c-bc0e-e9e97fe9a233)  
 
 ## 3-3 Cluster Autoscaler 배포
 ```bash
