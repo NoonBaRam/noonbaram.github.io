@@ -55,7 +55,7 @@ metadata:
   namespace: kube-system
 ```
 ## 3-2 Image URI, Cluster Name 변경
-![image](https://github.com/user-attachments/assets/c9588d25-e7ff-4100-972b-ce55978d21b5)  
+![image](https://github.com/user-attachments/assets/e0526fb8-07c9-4ac2-83e3-f187e9551886)  
 
 #### image의 맨뒤에 v1.xx.x 는 현재 사용하는 Cluster의 버전을 명시
 
