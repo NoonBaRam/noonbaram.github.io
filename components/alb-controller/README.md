@@ -41,14 +41,14 @@ alb-controller-v2.12.0.yaml파일 내용 https://git.noonbaram.store/components/
 ## YOUR-IAM-ROLE-ARN 수정
 ```bash
 sed -i.bak -e 's|YOUR-IAM-ROLE-ARN|my-iam-arn|' ./alb-controller-v2.12.0.yaml
-```  
-![image](https://github.com/user-attachments/assets/7202a744-b80f-4692-b3f2-70e755fdc606)  
+```
+<img width="572" height="267" alt="image" src="https://github.com/user-attachments/assets/c6809d6f-e490-4e0e-a643-567141dccd31" />  
 
 ## YOUR-CLUSTER-NAME 수정
 ```bash
 sed -i.bak -e 's|YOUR-CLUSTER-NAME|my-cluster|' ./alb-controller-v2.12.0.yaml
-```  
-![image](https://github.com/user-attachments/assets/7f7b5246-3eec-4c7e-9825-0d79104f611c)  
+```
+<img width="694" height="155" alt="image" src="https://github.com/user-attachments/assets/d91b50bd-34a9-4eae-aebd-000024ac3131" />  
 
 ### <예시>
 ```bash
