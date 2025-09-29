@@ -69,7 +69,7 @@ create-only: 레코드셋 생성 (삭제, 업데이트 불가능)
 
 # 3. Namespace & ServiceAccount YAML 다운 및 IAM ROLE ARN수정
 ```bash
-wget https://git.noonbaram.shop/components/external-dns/ns-serviceaccount.yaml
+wget https://git.noonbaram.store/components/external-dns/ns-serviceaccount.yaml
 ```
 ```yaml
 # Namespace create
@@ -165,8 +165,8 @@ spec:
 
 ### ingress 생성시 log  
 ### 이미지 클릭
-[![create-image](https://github.com/user-attachments/assets/a35ad2d1-5b39-4539-a543-184d1bfda0b6)](https://git.noonbaram.shop/components/external-dns/externaldns-create.mp4)  
+[![create-image](https://github.com/user-attachments/assets/a35ad2d1-5b39-4539-a543-184d1bfda0b6)](https://git.noonbaram.store/components/external-dns/externaldns-create.mp4)  
 
 ### ingress 삭제시 log
 ### 이미지 클릭
-[![delete-image](https://github.com/user-attachments/assets/6bb50d5c-fe9f-4dee-b910-9a7884b2158f)](https://git.noonbaram.shop/components/external-dns/externaldns-ingress-delete.mp4)  
+[![delete-image](https://github.com/user-attachments/assets/6bb50d5c-fe9f-4dee-b910-9a7884b2158f)](https://git.noonbaram.store/components/external-dns/externaldns-ingress-delete.mp4)  
