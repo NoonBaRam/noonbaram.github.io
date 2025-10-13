@@ -1,7 +1,7 @@
 #!/bin/bash
 # eksctl 설치
 mkdir $HOME/cli
-wget --show-progress -q -P $HOME/cli/ https://github.com/eksctl-io/eksctl/releases/download/v0.215.0/eksctl_Linux_amd64.tar.gz
+wget --show-progress -q -P $HOME/cli/ https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz
 tar -zxf $HOME/cli/eksctl_Linux_amd64.tar.gz -C $HOME/cli/
 sudo cp $HOME/cli/eksctl /usr/local/bin
 eksctl completion bash >> $HOME/.bash_completion
