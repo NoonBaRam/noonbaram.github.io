@@ -1,7 +1,7 @@
 #!/bin/bash
 # eksctl 설치
 mkdir $HOME/cli
-wget --show-progress -q -P $HOME/cli/ https://github.com/eksctl-io/eksctl/releases/download/v0.194.0/eksctl_Linux_amd64.tar.gz
+wget --show-progress -q -P $HOME/cli/ https://github.com/eksctl-io/eksctl/releases/download/v0.215.0/eksctl_Linux_amd64.tar.gz
 tar -zxf $HOME/cli/eksctl_Linux_amd64.tar.gz -C $HOME/cli/
 sudo cp $HOME/cli/eksctl /usr/local/bin
 eksctl completion bash >> $HOME/.bash_completion
@@ -10,7 +10,7 @@ sleep 5
 echo '~!~!~!~!~!~! eksctl 설치 완료 ~!~!~!~!~!~!'
 
 # kubectl 설치
-wget --show-progress -q -P $HOME/cli/ https://s3.us-west-2.amazonaws.com/amazon-eks/1.32.0/2024-12-20/bin/linux/amd64/kubectl
+wget --show-progress -q -P $HOME/cli/ curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.33.3/2025-08-03/bin/linux/amd64/kubectl
 chmod +x $HOME/cli/kubectl
 mkdir $HOME/bin && cp $HOME/cli/kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
 echo 'source <(kubectl completion bash)' >>$HOME/.bashrc
