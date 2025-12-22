@@ -49,4 +49,11 @@ sudo install -m 555 /home/ec2-user/cli/argocd-linux-amd64 /usr/local/bin/argocd
 argocd completion bash > argocd_bash_completion
 sudo mv argocd_bash_completion /etc/bash_completion.d/
 echo 'ArgoCD CLI 설치 완료'  
-echo 'EC2 SSH 재 접속 하세요'  
+echo '~!~!~!~!~!~! ArgoCD CLI 설치 완료 ~!~!~!~!~!~!'  
+
+# git CLI 설치  
+sudo yum install git -y
+git version
+echo '~!~!~!~!~!~! Git CLI 설치 완료 ~!~!~!~!~!~!'  
+
+echo 'EC2 SSH 재 접속 하세요 ^0^'  
