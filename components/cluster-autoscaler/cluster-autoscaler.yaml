@@ -5,7 +5,7 @@ metadata:
     k8s-addon: cluster-autoscaler.addons.k8s.io
     k8s-app: cluster-autoscaler
   annotations:
-    eks.amazonaws.com/role-arn: YOUR-IAM-ROLE-ARN
+    eks.amazonaws.com/role-arn: arn:aws:iam::417074014936:role/eks-iamrole-clusterautoscaler_allow
   name: cluster-autoscaler
   namespace: kube-system
 ---
@@ -64,6 +64,12 @@ rules:
     resourceNames: ["cluster-autoscaler"]
     resources: ["leases"]
     verbs: ["get", "update"]
+  - apiGroups: ["storage.k8s.io"]
+    resources: ["volumeattachments"]
+    verbs: ["watch", "list", "get"]
+  - apiGroups: ["resource.k8s.io"]
+    resources: ["resourceclaims", "resourceslices", "deviceclasses"]
+    verbs: ["list", "watch", "get"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -144,7 +150,7 @@ spec:
           type: RuntimeDefault
       serviceAccountName: cluster-autoscaler
       containers:
-        - image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.32.1
+        - image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.36.0
           name: cluster-autoscaler
           resources:
             limits:
@@ -162,7 +168,7 @@ spec:
             - --scale-down-unneeded-time=2m
             - --scale-down-utilization-threshold=0.7
             - --expander=least-waste
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/YOUR-CLUSTER-NAME
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/PARATA-EKS-DEV-Cluster
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt # /etc/ssl/certs/ca-bundle.crt for Amazon Linux Worker Nodes
