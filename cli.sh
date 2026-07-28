@@ -10,7 +10,7 @@ sleep 5
 echo '~!~!~!~!~!~! eksctl 설치 완료 ~!~!~!~!~!~!'
 
 # kubectl 설치
-wget --show-progress -q -P $HOME/cli/ curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.33.3/2025-08-03/bin/linux/amd64/kubectl
+wget --show-progress -q -P $HOME/cli/ https://s3.us-west-2.amazonaws.com/amazon-eks/1.35.3/2026-04-08/bin/linux/amd64/kubectl
 chmod +x $HOME/cli/kubectl
 mkdir $HOME/bin && cp $HOME/cli/kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
 echo 'source <(kubectl completion bash)' >>$HOME/.bashrc
